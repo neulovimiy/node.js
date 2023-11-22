@@ -52,6 +52,9 @@ enemyCar2.src = "img/enCar2.png";
 enemyCar2.X = 250;
 enemyCar2.Y = -450;
 
+let exit = new Image();
+exit.src="img/exit.png"
+
 // Audio elements
 let myReq;
 let currentAnimation;
