@@ -1,3 +1,24 @@
-<html>
-    <h1> тут будет игра! </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Racer's Quest</title>
+    <link rel="stylesheet" href="public/gameStyle.css">
+</head>
+<body>
+<!-- Start screen elements -->
+<div class="start-screen">
+    <h1>Racer's Quest</h1>
+    <button id="singlePlayerButton" class="game-button">Одиночная игра</button>
+    <button id="onlineButton" class="game-button">Онлайн</button>
+</div>
+
+<!-- Game canvas -->
+<canvas id="canvas" width="400" height="500"></canvas>
+
+<!-- Restart button -->
+<button id="restartButton" class="game-button">Перезапуск</button>
+
+<script src="script.js"></script>
+</body>
 </html>
