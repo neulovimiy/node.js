@@ -13,7 +13,8 @@ let okLeft = false;
 let okRight = false;
 let okUp = false;
 let okDown = false;
-let canDrawHeart = true; // Flag allowing heart drawing
+let canDrawHeart = true; 
+
 
 // Images and their initial positions
 let line = new Image();
@@ -61,6 +62,17 @@ let bonus = new Audio();
 bonus.src = "audio/bonus.mp3";
 accident.src = "audio/accident.mp3";
 end.src = "audio/end.mp3";
+// Добавьте переменную для хранения рекорда
+let record = 0;
+// Функция для обновления рекорда
+function updateRecord() {
+    if (score > record) {
+        record = score;
+        // Обновление текста с рекордом над игровым окном
+        document.getElementById('recordDisplay').innerText = "Рекорд: " + record;
+    }
+}
+
 
 // Event listener for single-player button
 singlePlayerButton.addEventListener("click", function () {
@@ -113,7 +125,8 @@ function stop() {
     ctx.fillStyle = "Red";
     ctx.fillText("Game over", 100, 200);
     isGameOver = true;
-    restartButton.style.display = "block"; // Show the restart button
+    restartButton.style.display = "block"; 
+    updateRecord();// Show the restart button
 }
 
 // Function to check collision between two cars
