@@ -1,19 +1,21 @@
+
 let canvas = document.getElementById("canvas");
-let startScreen = document.querySelector(".start-screen");
+
 let singlePlayerButton = document.getElementById("singlePlayerButton");
-let onlineButton = document.getElementById("onlineButton");
 let restartButton = document.getElementById("restartButton");
 let ctx = canvas.getContext("2d");
 let isPaused = false;
-let isGameStarted = false;
 let isGameOver = false;
-let lives = 1; // Three lives
+let lives = 1; 
 let score = 0; // Score instead of rating
 let okLeft = false;
 let okRight = false;
 let okUp = false;
 let okDown = false;
 let canDrawHeart = true; 
+let exitButton = document.getElementById("exitButton");
+
+
 
 
 // Images and their initial positions
@@ -52,8 +54,6 @@ enemyCar2.src = "img/enCar2.png";
 enemyCar2.X = 250;
 enemyCar2.Y = -450;
 
-let exit = new Image();
-exit.src="img/exit.png"
 
 // Audio elements
 let myReq;
@@ -75,33 +75,10 @@ function updateRecord() {
         document.getElementById('recordDisplay').innerText = "Рекорд: " + record;
     }
 }
-
-
-// Event listener for single-player button
-singlePlayerButton.addEventListener("click", function () {
-    if (!isGameStarted && !isGameOver) {
-        if (currentAnimation) {
-            cancelAnimationFrame(currentAnimation);
-        }
-        isGameStarted = true;
-        lives = 1;
-        score = 0;
-        myCar.X = 158;
-        myCar.Y = 400;
-        startScreen.style.display = "none";
-        canvas.style.display = "block";
-        restartButton.style.display = "none";  // Hide restart button
-        currentAnimation = requestAnimationFrame(render);
-    }
+exitButton.addEventListener("click", function(){
+    window.location.href = "/home";
+    
 });
-
-// Event listener for online button
-onlineButton.addEventListener("click", function () {
-    if (!isGameStarted && !isGameOver) {
-        // Your code for "Online" mode goes here
-    }
-});
-
 // Event listener for restart button
 restartButton.addEventListener("click", function () {
     if (isGameOver) {
@@ -113,13 +90,25 @@ restartButton.addEventListener("click", function () {
         score = 0;
         myCar.X = 158;
         myCar.Y = 400;
-        canDrawHeart = true; // Reset the flag to allow heart drawing
-        startScreen.style.display = "none";
-        canvas.style.display = "block";
+        canDrawHeart = true;
+
+        // Скрыть кнопку перезапуска
         restartButton.style.display = "none";
-        currentAnimation = requestAnimationFrame(render);
+        exitButton.style.display = "none";
+
+        // Сброс флагов движения машины
+        okLeft = false;
+        okRight = false;
+        okUp = false;
+        okDown = false;
+
+        render();
     }
 });
+
+
+
+
 
 // Function to stop the game
 function stop() {
@@ -129,6 +118,7 @@ function stop() {
     ctx.fillText("Game over", 100, 200);
     isGameOver = true;
     restartButton.style.display = "block"; 
+    exitButton.style.display="block"
     updateRecord();// Show the restart button
 }
 
@@ -168,7 +158,7 @@ function drawLines() {
 
 // Function to draw the player's car
 function drawMyCar() {
-    if (isGameStarted) {
+    if (!isGameOver) {
         if (okLeft === true && myCar.X > 0) {
             myCar.X -= 10;
         }
@@ -187,7 +177,7 @@ function drawMyCar() {
 
 // Function to draw the heart bonus
 function drawHeart() {
-    if (isGameStarted && score > 1 && canDrawHeart) {
+    if (!isGameOver && score > 1 && canDrawHeart) {
         let carCenterX = myCar.X + myCar.width / 2;
         let carCenterY = myCar.Y + myCar.height / 2;
 
@@ -247,7 +237,7 @@ function generateRandomCarPosition(existingCars) {
 
 // Function to draw the first enemy car
 function drawEnemyCar1() {
-    if (isGameStarted) {
+    if (!isGameOver) {
         if (checkCollision(myCar, enemyCar1)) {
             crash = true;
             enemyCar1.Y = myCar.Y - 500;
@@ -276,7 +266,7 @@ function drawEnemyCar1() {
 
 // Function to draw the second enemy car
 function drawEnemyCar2() {
-    if (isGameStarted) {
+    if (!isGameOver) {
         if (checkCollision(myCar, enemyCar2)) {
             crash = true;
             enemyCar2.Y = myCar.Y - 500;
@@ -346,7 +336,7 @@ render();
 
 // Event listeners for keydown and keyup events
 addEventListener("keydown", function (event) {
-    if (isGameStarted) {
+    if (!isGameOver) {
         let newDirect = event.keyCode;
         if (newDirect === 37 || newDirect === 65) {
             okLeft = true;
@@ -367,7 +357,7 @@ addEventListener("keydown", function (event) {
 });
 // Handle key release events to stop the corresponding car movement
 addEventListener("keyup", function (event) {
-    if (isGameStarted) {
+    if (!isGameOver) {
         let newDirection = event.keyCode;
         // Check the released key and update the corresponding movement flag to false
         if (newDirection === 37 || newDirection === 65) {

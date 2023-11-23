@@ -6,20 +6,15 @@
     <link rel="stylesheet" href="../css/gameStyle.css">
 </head>
 <body>
-<!-- Start screen elements -->
-<div class="start-screen">
-    <h1>Racer's Quest</h1>
-    <button id="singlePlayerButton" class="game-button">Одиночная игра</button>
-    <button id="onlineButton" class="game-button">Онлайн</button>
-</div>
-<!-- Добавьте элемент для отображения рекорда -->
-<div id="recordDisplay" style="position: absolute; top: 95px; left: 40%; transform: translateX(-50%); font-size: 24px;"></div>
-
+<!-- элемент для отображения рекорда -->
+<!-- элемент для отображения рекорда -->
+<div id="recordDisplay"></div>
+<div class="white-overlay"></div>
 <!-- Game canvas -->
 <canvas id="canvas" width="400" height="500"></canvas>
 
 <!-- Restart button -->
-
+<button id="exitButton" class="game-button">Home</button>
 <button id="restartButton" class="game-button">Перезапуск</button>
 <script src="../script.js"></script>
 </body>

@@ -9,6 +9,36 @@ body {
     color: #fff;
 }
 
+/* Стили для белой полосы */
+.white-overlay {
+    position: absolute;
+    top: 16%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 30px; /* Высота вашей белой полосы */
+    background-color: white;
+    z-index: 1; /* Установка z-index ниже заднего фона */
+}
+
+/* Стили для кнопки exitButton */
+#exitButton {
+    display: none;
+    position: absolute;
+    top: calc(50% - 285px);
+    transform: translateX(235%);
+    font-size: 12px;
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    line-height: 0px; /* Выравнивание текста по вертикали внутри кнопки */
+    text-indent: -15px; /* Смещение текста влево */
+    z-index: 2; /* Установка z-index выше белой полосы */
+}
+
+/* ... (остальной CSS) */
+
+
 /* Styling for the start screen elements */
 .start-screen {
     display: flex;
@@ -16,6 +46,16 @@ body {
     align-items: center;
     margin-top: 100px;
 }
+#recordDisplay {
+    color:#928dab;
+    position: absolute;
+    top: calc(50% - 275px);
+    transform: translateX(-155%);
+    font-size: 24px;
+    z-index: 2; /* Установка z-index выше белой полосы */
+}/* Отрицательное значение для смещения влево */
+
+
 
 
 /* Styling for game buttons */
@@ -37,7 +77,6 @@ body {
 
 /* Styling for the game canvas */
 #canvas {
-    display: none; /* Скрыть игровое окно по умолчанию */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -51,4 +90,9 @@ body {
     top: calc(50% + 250px); /* Подвинуть кнопку перезапуска вниз от центра игрового окна */
     left: 50%;
     transform: translateX(-50%);
+}
+
+/* Стили для текста подтверждения готовности */
+.start-screen p {
+    font-size: 28px; /* Измените размер на нужный вам */
 }

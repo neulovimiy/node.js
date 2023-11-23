@@ -3,7 +3,6 @@ const path = require("path");
 const collection = require("./config");
 const bcrypt = require('bcrypt');
 const session = require('express-session');
-
 const app = express();
 
 app.use(express.json());
@@ -23,10 +22,18 @@ app.get("/", (req, res) => {
 app.get("/signup", (req, res) => {
     res.render("signup");
 });
-
 app.get('/game', requireAuth, (req, res) => {
     if (req.session.user) {
         res.render('game');
+    } else {
+        res.redirect('/');
+    }
+});
+
+
+app.get('/home', requireAuth, (req, res) => {
+    if (req.session.user) {
+        res.render('home');
     } else {
         res.redirect('/');
     }
@@ -66,7 +73,7 @@ app.post("/login", async (req, res) => {
         }
         else {
             req.session.user = check;
-            res.redirect("/game");
+            res.redirect("/home");
         }
     }
     catch {
@@ -76,7 +83,7 @@ app.post("/login", async (req, res) => {
 
 function requireAuth(req, res, next) {
     if (!req.session.user) {
-        res.redirect('/');
+        res.redirect('/home'); // Если пользователь не авторизован, перенаправляем на /home
     } else {
         next();
     }
