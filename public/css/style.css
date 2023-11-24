@@ -15,7 +15,11 @@ body {
   background: linear-gradient(to bottom, #00d2ff, #928dab);
   color: #fff;
 }
-
+.link {
+  display: block;
+  text-align: center;
+  margin-top: 15px; /* Добавляем отступ сверху для выравнивания по центру */
+}
 h2 {
     text-align: center;
     margin-bottom: 30px;
@@ -29,7 +33,7 @@ h2 {
     border-radius: 25px;
   }
 
-  .form-group {
+.form-group {
     margin-bottom: 15px;
   }
 

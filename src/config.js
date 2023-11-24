@@ -12,7 +12,7 @@ connect.then(() => {
 // Create Schema
 const Loginschema = new mongoose.Schema({
     name: {
-        type:String,
+        type: String,
         required: true
     },
     password: {

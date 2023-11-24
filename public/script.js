@@ -67,18 +67,23 @@ accident.src = "audio/accident.mp3";
 end.src = "audio/end.mp3";
 // Добавьте переменную для хранения рекорда
 let record = 0;
+let recordDisplay = document.getElementById('recordDisplay');
 // Функция для обновления рекорда
 function updateRecord() {
-    if (score > record) {
+    if (score >= record) {
         record = score;
+
         // Обновление текста с рекордом над игровым окном
-        document.getElementById('recordDisplay').innerText = "Рекорд: " + record;
+        if(record === 0){
+       recordDisplay.innerText = "Рекорд: - ";
+        }
+        else{
+            recordDisplay.innerText = "Рекорд:" + record;
+        }
     }
 }
-exitButton.addEventListener("click", function(){
-    window.location.href = "/home";
-    
-});
+
+updateRecord();
 // Event listener for restart button
 restartButton.addEventListener("click", function () {
     if (isGameOver) {
@@ -109,7 +114,6 @@ restartButton.addEventListener("click", function () {
 
 
 
-
 // Function to stop the game
 function stop() {
     cancelAnimationFrame(myReq);
@@ -119,7 +123,11 @@ function stop() {
     isGameOver = true;
     restartButton.style.display = "block"; 
     exitButton.style.display="block"
-    updateRecord();// Show the restart button
+    updateRecord();
+    exitButton.addEventListener("click", function(){
+        window.location.href = "/home";
+        
+    });
 }
 
 // Function to check collision between two cars

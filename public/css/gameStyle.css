@@ -10,13 +10,23 @@ body {
 }
 
 /* Стили для белой полосы */
-.white-overlay {
+.white-overlay1 {
     position: absolute;
     top: 16%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
     height: 30px; /* Высота вашей белой полосы */
+    background-color: white;
+    z-index: 1; /* Установка z-index ниже заднего фона */
+}
+.white-overlay2 {
+    position: absolute;
+    top: 86%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 57px; /* Высота вашей белой полосы */
     background-color: white;
     z-index: 1; /* Установка z-index ниже заднего фона */
 }
@@ -87,9 +97,13 @@ body {
 #restartButton {
     display: none;
     position: absolute;
-    top: calc(50% + 250px); /* Подвинуть кнопку перезапуска вниз от центра игрового окна */
-    left: 50%;
-    transform: translateX(-50%);
+    top: calc(50% + 237px); /* Подвинуть кнопку перезапуска вниз от центра игрового окна */
+    transform: translateX(0%);
+    width: 150;
+    text-align: center;
+    height:50;
+    font-size: 18;
+    z-index: 2;
 }
 
 /* Стили для текста подтверждения готовности */

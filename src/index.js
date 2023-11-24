@@ -29,6 +29,16 @@ app.get('/game', requireAuth, (req, res) => {
         res.redirect('/');
     }
 });
+app.get("/errorPassword", (req, res) => {
+    res.render("errorPassword")
+});
+app.get("/unknown", (req, res) => {
+    res.render("unknown")
+});
+app.get("/occupied", (req, res) => {
+    res.render("occupied")
+});
+
 
 
 app.get('/home', requireAuth, (req, res) => {
@@ -48,7 +58,7 @@ app.post("/signup", async (req, res) => {
     const existingUser = await collection.findOne({ name: data.name });
 
     if (existingUser) {
-        res.send('User already exists. Please choose a different username.');
+        res.redirect('/occupied')
     } else {
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(data.password, saltRounds);
@@ -64,22 +74,22 @@ app.post("/login", async (req, res) => {
     try {
         const check = await collection.findOne({ name: req.body.username });
         if (!check) {
-            res.send("User name cannot found")
+            res.redirect('/unknown'); // Перенаправление на страницу ошибки
+        } 
+        else{
+            const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
+            if (!isPasswordMatch) {
+                res.redirect('/errorPassword');
+            } else {
+                req.session.user = check;
+                res.redirect("/home");
+            }
         }
-
-        const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-        if (!isPasswordMatch) {
-            res.send("wrong Password");
-        }
-        else {
-            req.session.user = check;
-            res.redirect("/home");
-        }
-    }
-    catch {
-        res.send("wrong Details");
+    } catch {
+        res.send("Wrong Details");
     }
 });
+
 
 function requireAuth(req, res, next) {
     if (!req.session.user) {
