@@ -17,3 +17,6 @@ onlineButton.addEventListener("click", function () {
     // Добавьте вашу логику для онлайн-режима здесь
     // Например, переход к онлайн-игре или открытие веб-приложения
 });
+document.getElementById('leaderboardButton').addEventListener('click', function() {
+    window.location.href = '/record';
+});

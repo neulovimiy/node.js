@@ -136,3 +136,13 @@ app.post('/update-record', async (req, res) => {
         return res.status(500).json({ error: 'Ошибка сервера при обновлении рекорда' });
     }
 });
+// Маршрут для страницы "Таблица лидеров"
+app.get('/record', async (req, res) => {
+    try {
+        const users = await collection.find({}).sort({ record: -1 }); // Получаем пользователей и сортируем по рекорду
+        res.render('record', { users: users });
+    } catch (error) {
+        console.error('Ошибка при получении данных для таблицы лидеров:', error);
+        res.redirect('/home');
+    }
+});
