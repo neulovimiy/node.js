@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const collection = require("./config");
+const collection = require("./mongo");
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const app = express();
@@ -52,13 +52,14 @@ app.get('/home', requireAuth, (req, res) => {
 app.post("/signup", async (req, res) => {
     const data = {
         name: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        record: 0
     }
 
     const existingUser = await collection.findOne({ name: data.name });
 
     if (existingUser) {
-        res.redirect('/occupied')
+        res.redirect('/occupied');
     } else {
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(data.password, saltRounds);
@@ -102,4 +103,36 @@ function requireAuth(req, res, next) {
 const port = 3000;
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
+});
+
+// Маршрут для получения текущего рекорда пользователя
+app.get('/get-record', async (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ error: 'Неавторизованный доступ' });
+    }
+    try {
+        const user = await collection.findOne({ name: req.session.user.name });
+        return res.json({ record: user.record });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Ошибка сервера при получении рекорда' });
+    }
+});
+
+// Маршрут для обновления рекорда пользователя
+app.post('/update-record', async (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ error: 'Неавторизованный доступ' });
+    }
+    try {
+        const newRecord = req.body.record;
+        await collection.updateOne(
+            { name: req.session.user.name },
+            { $set: { record: newRecord } }
+        );
+        return res.json({ message: 'Рекорд обновлен' });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Ошибка сервера при обновлении рекорда' });
+    }
 });

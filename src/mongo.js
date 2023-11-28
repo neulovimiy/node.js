@@ -18,6 +18,10 @@ const Loginschema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    record:{
+        type: Number,
+        required: 0
     }
 });
 

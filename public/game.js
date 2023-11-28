@@ -16,7 +16,7 @@ let canDrawHeart = true;
 let exitButton = document.getElementById("exitButton");
 
 
-
+//fsafsafasf
 
 // Images and their initial positions
 let line = new Image();
@@ -68,22 +68,27 @@ end.src = "audio/end.mp3";
 // Добавьте переменную для хранения рекорда
 let record = 0;
 let recordDisplay = document.getElementById('recordDisplay');
+
 // Функция для обновления рекорда
 function updateRecord() {
     if (score >= record) {
         record = score;
-
         // Обновление текста с рекордом над игровым окном
-        if(record === 0){
-       recordDisplay.innerText = "Рекорд: - ";
-        }
-        else{
-            recordDisplay.innerText = "Рекорд:" + record;
-        }
+        recordDisplay.innerText = "Рекорд:" + record;
+        // Removed localStorage usage // Сохранение рекорда в localStorage
     }
 }
 
-updateRecord();
+// Проверка наличия рекорда в localStorage при начале игры
+window.onload = function() {
+    // Removed localStorage usage
+    if (storedRecord) {
+        // Removed localStorage usage // Загрузка рекорда из localStorage
+        // Обновление текста с рекордом на странице
+        recordDisplay.innerText = "Рекорд: " + record;
+    }
+};
+
 // Event listener for restart button
 restartButton.addEventListener("click", function () {
     if (isGameOver) {
@@ -110,9 +115,6 @@ restartButton.addEventListener("click", function () {
         render();
     }
 });
-
-
-
 
 // Function to stop the game
 function stop() {
@@ -382,3 +384,43 @@ addEventListener("keyup", function (event) {
         }
     }
 });
+// Функция для загрузки текущего рекорда пользователя с сервера
+function fetchRecord() {
+    fetch('/get-record')
+        .then(response => response.json())
+        .then(data => {
+            record = data.record;
+            recordDisplay.innerText = "Рекорд: " + record;
+        })
+        .catch(error => console.error('Error fetching record:', error));
+}
+
+// Функция для обновления рекорда на сервере
+function updateServerRecord(newRecord) {
+    fetch('/update-record', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ record: newRecord }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Record updated:', data);
+    })
+    .catch(error => console.error('Error updating record:', error));
+}
+
+// Изменение функции updateRecord для включения взаимодействия с сервером
+function updateRecord() {
+    if (score > record) {
+        record = score;
+        recordDisplay.innerText = "Рекорд: " + record;
+        updateServerRecord(record); // Обновление рекорда на сервере
+    }
+}
+
+// Запрос текущего рекорда пользователя при загрузке игры
+window.onload = function() {
+    fetchRecord();
+};
