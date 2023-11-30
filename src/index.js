@@ -4,7 +4,7 @@ const collection = require("./mongo");
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const app = express();
-
+const port = 3000;
 app.use(express.json());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
@@ -21,6 +21,9 @@ app.get("/", (req, res) => {
 
 app.get("/signup", (req, res) => {
     res.render("signup");
+});
+app.get("/expectation", (req, res) => {
+    res.render("expectation");
 });
 app.get('/game', requireAuth, (req, res) => {
     if (req.session.user) {
@@ -39,7 +42,9 @@ app.get("/occupied", (req, res) => {
     res.render("occupied")
 });
 
-
+app.get('/gameOnline', function(req, res) {
+  res.render('gameOnline');
+});
 
 app.get('/home', requireAuth, (req, res) => {
     if (req.session.user) {
@@ -100,11 +105,6 @@ function requireAuth(req, res, next) {
     }
 }
 
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`)
-});
-
 // Маршрут для получения текущего рекорда пользователя
 app.get('/get-record', async (req, res) => {
     if (!req.session.user) {
@@ -145,4 +145,7 @@ app.get('/record', async (req, res) => {
         console.error('Ошибка при получении данных для таблицы лидеров:', error);
         res.redirect('/home');
     }
+});
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}`)
 });

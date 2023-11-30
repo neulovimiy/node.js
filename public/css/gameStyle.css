@@ -46,9 +46,6 @@ body {
     z-index: 2; /* Установка z-index выше белой полосы */
 }
 
-/* ... (остальной CSS) */
-
-
 /* Styling for the start screen elements */
 .start-screen {
     display: flex;
@@ -59,8 +56,8 @@ body {
 #recordDisplay {
     color:#928dab;
     position: absolute;
-    top: calc(50% - 275px);
-    transform: translateX(-155%);
+    top: calc(50% - 268px);
+    transform: translateX(-135%);
     font-size: 24px;
     z-index: 2; /* Установка z-index выше белой полосы */
 }/* Отрицательное значение для смещения влево */
@@ -97,7 +94,7 @@ body {
 #restartButton {
     display: none;
     position: absolute;
-    top: calc(50% + 237px); /* Подвинуть кнопку перезапуска вниз от центра игрового окна */
+    top: calc(50% + 235px); /* Подвинуть кнопку перезапуска вниз от центра игрового окна */
     transform: translateX(0%);
     width: 150;
     text-align: center;

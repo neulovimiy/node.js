@@ -1,8 +1,5 @@
-
 let canvas = document.getElementById("canvas");
-let restartButton = document.getElementById("restartButton");
 let ctx = canvas.getContext("2d");
-let isPaused = false;
 let isGameOver = false;
 let lives = 1; 
 let score = 0; // Score instead of rating
@@ -22,11 +19,6 @@ let line2 = new Image();
 line2.src = "img/line.png";
 line2.X = 180;
 line2.Y = 160;
-
-let pause = new Image();
-pause.src = "img/pause.png"
-pause.X = 154;
-pause.Y = 200;
 
 let heart = new Image();
 heart.src = "img/heart.png";
@@ -59,57 +51,6 @@ let bonus = new Audio();
 bonus.src = "audio/bonus.mp3";
 accident.src = "audio/accident.mp3";
 end.src = "audio/end.mp3";
-// Добавьте переменную для хранения рекорда
-let record = 0;
-let recordDisplay = document.getElementById('recordDisplay');
-
-// Функция для обновления рекорда
-function updateRecord() {
-    if (score >= record) {
-        record = score;
-        // Обновление текста с рекордом над игровым окном
-        recordDisplay.innerText = "Рекорд:" + record;
-        // Removed localStorage usage // Сохранение рекорда в localStorage
-    }
-}
-
-// Проверка наличия рекорда в localStorage при начале игры
-window.onload = function() {
-    // Removed localStorage usage
-    if (storedRecord) {
-        // Removed localStorage usage // Загрузка рекорда из localStorage
-        // Обновление текста с рекордом на странице
-        recordDisplay.innerText = "Рекорд: " + record;
-    }
-};
-
-// Event listener for restart button
-restartButton.addEventListener("click", function () {
-    if (isGameOver) {
-        if (currentAnimation) {
-            cancelAnimationFrame(currentAnimation);
-        }
-        isGameOver = false;
-        lives = 1;
-        score = 0;
-        myCar.X = 158;
-        myCar.Y = 400;
-        canDrawHeart = true;
-
-        // Скрыть кнопку перезапуска
-        restartButton.style.display = "none";
-        exitButton.style.display = "none";
-
-        // Сброс флагов движения машины
-        okLeft = false;
-        okRight = false;
-        okUp = false;
-        okDown = false;
-
-        render();
-    }
-});
-
 // Function to stop the game
 function stop() {
     cancelAnimationFrame(myReq);
@@ -117,12 +58,10 @@ function stop() {
     ctx.fillStyle = "Red";
     ctx.fillText("Game over", 100, 200);
     isGameOver = true;
-    restartButton.style.display = "block"; 
     exitButton.style.display="block"
-    updateRecord();
     exitButton.addEventListener("click", function(){
         window.location.href = "/home";
-    
+        
     });
 }
 
@@ -164,10 +103,10 @@ function drawLines() {
 function drawMyCar() {
     if (!isGameOver) {
         if (okLeft === true && myCar.X > 0) {
-            myCar.X -= 7.5;
+            myCar.X -= 10;
         }
         if (okRight === true && myCar.X < 335) {
-            myCar.X += 7.5;
+            myCar.X += 10;
         }
         if (okUp === true && myCar.Y > 0) {
             myCar.Y -= 5;
@@ -317,8 +256,6 @@ function render() {
     if (isGameOver) {
         return;
     }
-
-    if (!isPaused) {
         drawRect();
         drawLines();
         drawMyCar();
@@ -327,11 +264,6 @@ function render() {
         drawEnemyCar2();
         drawLives();
         ochki();
-    }
-    if (isPaused) {
-        ctx.drawImage(pause, pause.X, pause.Y);
-    }
-
     currentAnimation = requestAnimationFrame(render);
 }
 
@@ -354,9 +286,6 @@ addEventListener("keydown", function (event) {
         if (newDirect === 40 || newDirect === 83) {
             okDown = true;
         }
-        if (newDirect === 32) {
-            isPaused = !isPaused;
-        }
     }
 });
 // Handle key release events to stop the corresponding car movement
@@ -378,43 +307,3 @@ addEventListener("keyup", function (event) {
         }
     }
 });
-// Функция для загрузки текущего рекорда пользователя с сервера
-function fetchRecord() {
-    fetch('/get-record')
-        .then(response => response.json())
-        .then(data => {
-            record = data.record;
-            recordDisplay.innerText = "Рекорд: " + record;
-        })
-        .catch(error => console.error('Error fetching record:', error));
-}
-
-// Функция для обновления рекорда на сервере
-function updateServerRecord(newRecord) {
-    fetch('/update-record', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ record: newRecord }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Record updated:', data);
-    })
-    .catch(error => console.error('Error updating record:', error));
-}
-
-// Изменение функции updateRecord для включения взаимодействия с сервером
-function updateRecord() {
-    if (score > record) {
-        record = score;
-        recordDisplay.innerText = "Рекорд: " + record;
-        updateServerRecord(record); // Обновление рекорда на сервере
-    }
-}
-
-// Запрос текущего рекорда пользователя при загрузке игры
-window.onload = function() {
-    fetchRecord();
-};
