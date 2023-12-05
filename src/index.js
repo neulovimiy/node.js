@@ -1,35 +1,11 @@
 const express = require("express");
-const path = require("path");
 const collection = require("./mongo");
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const app = express();
-const WebSocket = require('ws');
-const server = require('http').createServer(app);
-const wss = new WebSocket.Server({ server });
-const port = 3000;
-const clients = new Map();
-
-wss.on('connection', (ws) => {
-    console.log('A new client connected');
-
-    ws.on('message', (message) => {
-        const data = JSON.parse(message);
-        if (data.type === 'username') {
-            // Сохраняем соответствие между ws и именем пользователя
-            clients.set(ws, data.name);
-            console.log(`The client is connected: ${data.name}`);
-        }
-        // Обработка других видов сообщений
-    });
-    ws.on('close', () => {
-        // Получаем имя пользователя для этого соединения
-        const username = clients.get(ws);
-        console.log(`Connection closed by: ${username}`);
-        // Удаляем пользователя из списка активных
-        clients.delete(ws);
-    });
-});
+const http = require("http");
+const server = http.Server(app);
+app.set("port",3000);
 app.use(express.json());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
@@ -40,7 +16,7 @@ app.use(session({
 }));
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
+app.get("/", function (req, res) {
     res.render("login");
 });
 
@@ -173,6 +149,6 @@ app.get('/record', async (req, res) => {
         res.redirect('/home');
     }
 });
-server.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+server.listen(3000,function () {
+    console.log('Server is running on port 3000');
 });
