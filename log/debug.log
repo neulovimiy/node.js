@@ -1,0 +1,3 @@
+{"level":"debug","message":"Server is running on port 3000","service":"user-service"}
+{"level":"debug","message":{"name":"31","password":"31","record":0},"service":"user-service"}
+{"level":"debug","message":[{"__v":0,"_id":"657b54c7ff625c3c39b0a278","name":"31","password":"$2b$10$7I.uOZCPtBooTjIWMRjVIeyIyTsRWcOXCh/YWMarqt4/5J6J1BvEa","record":0}],"service":"user-service"}

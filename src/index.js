@@ -8,6 +8,7 @@ const server = http.Server(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
 const { v4: uuidv4 } = require('uuid');
+const logger = require('./logger');
 
 const getRooms = () => io.sockets.adapter.rooms;
 const getRoomsWithDetails = () => {
@@ -39,20 +40,20 @@ const onScore = (socket, roomName) => socket.on('score', data => {
 });
 
 // const onDisconnect = (socket, roomName) => socket.on('disconnect', (data) => {
-//     console.log('disconnect', data);
+//     logger.debug('disconnect', data);
 //     socket.leave(roomName);
 // });
 
 io.on('connection', (socket) => {
-    // console.log('a user connected: ', socket.id);
+    // logger.debug('a user connected: ', socket.id);
 
     const roomsWithDetails = getRoomsWithDetails();
     const gameRooms = roomsWithDetails.filter(room => room.name.indexOf('game__') > -1);
     const roomWithOneClient = gameRooms.find(room => room.clientsSize === 1);
 
     if(roomWithOneClient) {
-        console.log('join');
-        console.log('socketId: ', socket.id);
+        logger.debug('join');
+        logger.debug('socketId: ', socket.id);
         socket.join(roomWithOneClient.name);
         onRoomData(socket, roomWithOneClient.name);
         onStartGame(socket, roomWithOneClient.name);
@@ -60,8 +61,8 @@ io.on('connection', (socket) => {
         onEndGame(socket, roomWithOneClient.name);
         onScore(socket, roomWithOneClient.name);
     } else {
-        console.log('create');
-        console.log('socketId: ', socket.id);
+        logger.debug('create');
+        logger.debug('socketId: ', socket.id);
         const newRoomName = 'game__' + uuidv4();
         socket.join(newRoomName);
         onRoomData(socket, newRoomName);
@@ -70,7 +71,7 @@ io.on('connection', (socket) => {
         onScore(socket, newRoomName);
     }
 
-    console.log(getRoomsWithDetails());
+    logger.debug(getRoomsWithDetails());
 });
 
 app.set("port",3000);
@@ -132,7 +133,7 @@ app.post("/signup", async (req, res) => {
         record: 0
     }
 
-    console.log(data);
+    logger.debug(data);
 
     const existingUser = await collection.findOne({ name: data.name });
 
@@ -144,7 +145,7 @@ app.post("/signup", async (req, res) => {
         data.password = hashedPassword;
 
         const userdata = await collection.insertMany(data);
-        console.log(userdata);
+        logger.debug(userdata);
         res.redirect("/");
     }
 });
@@ -187,7 +188,7 @@ app.get('/get-record', async (req, res) => {
         const user = await collection.findOne({ name: req.session.user.name });
         return res.json({ record: user.record });
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         return res.status(500).json({ error: 'Ошибка сервера при получении рекорда' });
     }
 });
@@ -205,7 +206,7 @@ app.post('/update-record', async (req, res) => {
         );
         return res.json({ message: 'Рекорд обновлен' });
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         return res.status(500).json({ error: 'Ошибка сервера при обновлении рекорда' });
     }
 });
@@ -215,10 +216,10 @@ app.get('/record', async (req, res) => {
         const users = await collection.find({}).sort({ record: -1 }); // Получаем пользователей и сортируем по рекорду
         res.render('record', { users: users });
     } catch (error) {
-        console.error('Ошибка при получении данных для таблицы лидеров:', error);
+        logger.error('Ошибка при получении данных для таблицы лидеров:', error);
         res.redirect('/home');
     }
 });
 server.listen(3000,function () {
-    console.log('Server is running on port 3000');
+    logger.debug('Server is running on port 3000');
 });
