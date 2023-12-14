@@ -3,7 +3,6 @@ let localCanvas = document.getElementById("canvasLocal");
 let localContext = localCanvas.getContext("2d");
 let remoteCanvas = document.getElementById("canvasRemote");
 let remoteContext = remoteCanvas.getContext("2d");
-let restartButton = document.getElementById("restartButton");
 let isLocalPaused = false;
 let isLocalGameOver = false;
 let localLives = 1;
@@ -170,34 +169,6 @@ window.onload = function() {
         recordDisplay.innerText = "Рекорд: " + record;
     }
 };
-
-// Event listener for restart button
-restartButton.addEventListener("click", function () {
-    if (isLocalGameOver) {
-        if (currentAnimation) {
-            cancelAnimationFrame(currentAnimation);
-        }
-        isLocalGameOver = false;
-        localLives = 1;
-        localScore = 0;
-        myCar.X = 158;
-        myCar.Y = 400;
-        canDrawHeart = true;
-
-        // Скрыть кнопку перезапуска
-        restartButton.style.display = "none";
-        exitButton.style.display = "none";
-
-        // Сброс флагов движения машины
-        okLeft = false;
-        okRight = false;
-        okUp = false;
-        okDown = false;
-
-        render(localRenderOptions);
-    }
-});
-
 const interval = setInterval(() => {
     if(isLocalGameOver) {
         socket.emit('end-game');

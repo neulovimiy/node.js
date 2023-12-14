@@ -1,0 +1,61 @@
+/* Styling for the entire page */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to bottom, #00d2ff, #928dab);
+    color: #fff;
+}
+/* Стили для кнопки exitButton */
+#exitButton {
+    display: none;
+    position: absolute;
+    top: calc(50% + 110px);
+    transform: translateX(0%);
+    font-size: 20px;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    line-height: 0px; /* Выравнивание текста по вертикали внутри кнопки */
+    text-indent: -13px; /* Смещение текста влево */
+    z-index: 2; /* Установка z-index выше белой полосы */
+}
+
+/* Styling for the start screen elements */
+.start-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+/* Styling for game buttons */
+
+.game-button {
+    font-size: 24px;
+    padding: 15px 30px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #778899;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Styling for the game canvas */
+#canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Стили для текста подтверждения готовности */
+.start-screen p {
+    font-size: 28px; /* Измените размер на нужный вам */
+}

@@ -1,3 +1,160 @@
 {"level":"debug","message":"Server is running on port 3000","service":"user-service"}
 {"level":"debug","message":{"name":"31","password":"31","record":0},"service":"user-service"}
 {"level":"debug","message":[{"__v":0,"_id":"657b54c7ff625c3c39b0a278","name":"31","password":"$2b$10$7I.uOZCPtBooTjIWMRjVIeyIyTsRWcOXCh/YWMarqt4/5J6J1BvEa","record":0}],"service":"user-service"}
+{"level":"debug","message":"Server is running on port 3000","service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"3U3tootQcMKZ1b28AAAB"},{"clients":{},"clientsSize":1,"name":"game__31d2cf4b-7901-425c-b1d1-ac221792082f"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"3U3tootQcMKZ1b28AAAB"},{"clients":{},"clientsSize":2,"name":"game__31d2cf4b-7901-425c-b1d1-ac221792082f"},{"clients":{},"clientsSize":1,"name":"bDYpKM7jZvZ84MRJAAAD"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"3U3tootQcMKZ1b28AAAB"},{"clients":{},"clientsSize":1,"name":"jiIIjMBx9sRWQWMSAAAF"},{"clients":{},"clientsSize":1,"name":"game__1c5fd25e-9ce0-48d0-8705-0aa927ce5f0a"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"3U3tootQcMKZ1b28AAAB"},{"clients":{},"clientsSize":1,"name":"Er8kTS4fywHaNgaiAAAH"},{"clients":{},"clientsSize":1,"name":"game__45cacffe-875c-4150-a9e5-e3730501cbc0"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"Er8kTS4fywHaNgaiAAAH"},{"clients":{},"clientsSize":2,"name":"game__45cacffe-875c-4150-a9e5-e3730501cbc0"},{"clients":{},"clientsSize":1,"name":"hs5Vh49WuQHMxyJmAAAJ"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"QmETc2aH4p1BSx6XAAAL"},{"clients":{},"clientsSize":1,"name":"game__30369363-5334-4587-ac96-7b814a8443d9"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"QmETc2aH4p1BSx6XAAAL"},{"clients":{},"clientsSize":2,"name":"game__30369363-5334-4587-ac96-7b814a8443d9"},{"clients":{},"clientsSize":1,"name":"osr2uZFbtpSv0X15AAAN"}],"service":"user-service"}
+{"level":"debug","message":"Server is running on port 3000","service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"MgraAM7JTghHVNUBAAAB"},{"clients":{},"clientsSize":1,"name":"game__53f51b11-5741-409d-9dc7-8a7cbab26418"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"Pc4L_e776zm16BtJAAAD"},{"clients":{},"clientsSize":1,"name":"game__69e87b88-a1cc-4927-9a1f-c8a9109bee03"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"Pc4L_e776zm16BtJAAAD"},{"clients":{},"clientsSize":2,"name":"game__69e87b88-a1cc-4927-9a1f-c8a9109bee03"},{"clients":{},"clientsSize":1,"name":"AdXjBKb7-7RYk3RcAAAF"}],"service":"user-service"}
+{"level":"debug","message":"Server is running on port 3000","service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"6xL7WmeIdD9LpA18AAAB"},{"clients":{},"clientsSize":1,"name":"game__28974e23-ef00-4e50-a07b-33b35d986ae4"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"78tH_smJ5YcTdbfKAAAD"},{"clients":{},"clientsSize":1,"name":"game__c61f4900-2031-445f-b39c-a532c19e556a"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"78tH_smJ5YcTdbfKAAAD"},{"clients":{},"clientsSize":2,"name":"game__c61f4900-2031-445f-b39c-a532c19e556a"},{"clients":{},"clientsSize":1,"name":"7aw13EH2l7kCesoTAAAF"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"2V3h3Ak3xpkDYA6sAAAH"},{"clients":{},"clientsSize":1,"name":"game__dcb436c0-6327-45dd-bce7-54d2d2300df6"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"2V3h3Ak3xpkDYA6sAAAH"},{"clients":{},"clientsSize":2,"name":"game__dcb436c0-6327-45dd-bce7-54d2d2300df6"},{"clients":{},"clientsSize":1,"name":"oNPLM660AZt0bEgFAAAJ"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"Rz9eBvdHNvI6zZ9kAAAL"},{"clients":{},"clientsSize":1,"name":"game__336ce9d0-7323-49bc-87cf-3aae34e3c8d7"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"Rz9eBvdHNvI6zZ9kAAAL"},{"clients":{},"clientsSize":2,"name":"game__336ce9d0-7323-49bc-87cf-3aae34e3c8d7"},{"clients":{},"clientsSize":1,"name":"-JgwarBGZVR1aovIAAAN"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"GE2AXRNYT6azDe2PAAAP"},{"clients":{},"clientsSize":1,"name":"game__b55d82ec-8900-4266-aa69-cbb6611d0662"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"GE2AXRNYT6azDe2PAAAP"},{"clients":{},"clientsSize":2,"name":"game__b55d82ec-8900-4266-aa69-cbb6611d0662"},{"clients":{},"clientsSize":1,"name":"a5LnwGIczF6nc08PAAAR"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"GE2AXRNYT6azDe2PAAAP"},{"clients":{},"clientsSize":1,"name":"Ta9XhVjRYueeR1wjAAAT"},{"clients":{},"clientsSize":1,"name":"game__6ee8b6c8-bbfa-40c8-9621-ad2e9178c177"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"Ta9XhVjRYueeR1wjAAAT"},{"clients":{},"clientsSize":2,"name":"game__6ee8b6c8-bbfa-40c8-9621-ad2e9178c177"},{"clients":{},"clientsSize":1,"name":"WgQ7fa4_iwuER8lUAAAV"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"Ta9XhVjRYueeR1wjAAAT"},{"clients":{},"clientsSize":1,"name":"7YIf9qsxWj3wVzv8AAAX"},{"clients":{},"clientsSize":1,"name":"game__b13c1db7-eb30-4ef4-9975-2b62324c4e05"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"7YIf9qsxWj3wVzv8AAAX"},{"clients":{},"clientsSize":2,"name":"game__b13c1db7-eb30-4ef4-9975-2b62324c4e05"},{"clients":{},"clientsSize":1,"name":"eZwkEHX01P2pz1t-AAAZ"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"DyZ2u3Vq3eNe6sn4AAAb"},{"clients":{},"clientsSize":1,"name":"game__cfe616d3-5b41-4871-8a95-da9981fc71ae"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"DyZ2u3Vq3eNe6sn4AAAb"},{"clients":{},"clientsSize":2,"name":"game__cfe616d3-5b41-4871-8a95-da9981fc71ae"},{"clients":{},"clientsSize":1,"name":"zfUHEE26JCYuQO5GAAAd"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":2,"name":"game__cfe616d3-5b41-4871-8a95-da9981fc71ae"},{"clients":{},"clientsSize":1,"name":"zfUHEE26JCYuQO5GAAAd"},{"clients":{},"clientsSize":1,"name":"wDK7JJBVt6E5Qc_pAAAf"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":2,"name":"game__cfe616d3-5b41-4871-8a95-da9981fc71ae"},{"clients":{},"clientsSize":1,"name":"wDK7JJBVt6E5Qc_pAAAf"},{"clients":{},"clientsSize":1,"name":"hchZbwgSy5U4vfYZAAAh"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"spCe9y254EZnoB5QAAAj"},{"clients":{},"clientsSize":1,"name":"game__b1cc917e-c942-4a17-bb2c-357eaa46b544"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"spCe9y254EZnoB5QAAAj"},{"clients":{},"clientsSize":2,"name":"game__b1cc917e-c942-4a17-bb2c-357eaa46b544"},{"clients":{},"clientsSize":1,"name":"zk8M_Qq3y-ZBU-vtAAAl"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"zk8M_Qq3y-ZBU-vtAAAl"},{"clients":{},"clientsSize":1,"name":"cbydzdoQohvIoOIHAAAn"},{"clients":{},"clientsSize":1,"name":"game__53db085e-6bfe-4fe0-9a07-18fd3578dbbc"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"cbydzdoQohvIoOIHAAAn"},{"clients":{},"clientsSize":2,"name":"game__53db085e-6bfe-4fe0-9a07-18fd3578dbbc"},{"clients":{},"clientsSize":1,"name":"Efqwjwk3SYOfIE4cAAAp"}],"service":"user-service"}
+{"level":"debug","message":"Server is running on port 3000","service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"GhwKhS24KCui35ZnAAAB"},{"clients":{},"clientsSize":1,"name":"game__286c9cda-d005-4f52-ade6-21d3b23dfb97"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"wqQqOwxRRan11qyCAAAD"},{"clients":{},"clientsSize":1,"name":"game__a5462e2c-099e-4a38-8e98-0a3888d89327"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"AU9hEjRpSfBP2d7-AAAF"},{"clients":{},"clientsSize":1,"name":"game__e966c720-b9df-411e-a995-869583c23f55"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"AU9hEjRpSfBP2d7-AAAF"},{"clients":{},"clientsSize":2,"name":"game__e966c720-b9df-411e-a995-869583c23f55"},{"clients":{},"clientsSize":1,"name":"l3wYOnFxxVhmfOCuAAAH"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"AU9hEjRpSfBP2d7-AAAF"},{"clients":{},"clientsSize":1,"name":"0VPbtOQ_sa6x2NzTAAAJ"},{"clients":{},"clientsSize":1,"name":"game__e0aaa6f4-8f78-4c17-a786-890390ab466f"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"0VPbtOQ_sa6x2NzTAAAJ"},{"clients":{},"clientsSize":2,"name":"game__e0aaa6f4-8f78-4c17-a786-890390ab466f"},{"clients":{},"clientsSize":1,"name":"3VvBudBVJQ3sbPQBAAAL"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"0VPbtOQ_sa6x2NzTAAAJ"},{"clients":{},"clientsSize":1,"name":"ZDljeRGsBy-X4Hn-AAAN"},{"clients":{},"clientsSize":1,"name":"game__0059a77c-ee03-46c0-8b2e-c50029a90a53"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"ZDljeRGsBy-X4Hn-AAAN"},{"clients":{},"clientsSize":2,"name":"game__0059a77c-ee03-46c0-8b2e-c50029a90a53"},{"clients":{},"clientsSize":1,"name":"CB7PutgQffFHI29WAAAP"}],"service":"user-service"}
+{"level":"debug","message":"Server is running on port 3000","service":"user-service"}
+{"level":"debug","message":"Server is running on port 3000","service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"g7UAObGsbYKwjP7UAAAB"},{"clients":{},"clientsSize":1,"name":"game__1db38234-1126-4dc1-b2be-82932160b9d3"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"g7UAObGsbYKwjP7UAAAB"},{"clients":{},"clientsSize":2,"name":"game__1db38234-1126-4dc1-b2be-82932160b9d3"},{"clients":{},"clientsSize":1,"name":"1r5DRcFeZvLXoMdhAAAD"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"mwbTfuWR3YcTgifuAAAF"},{"clients":{},"clientsSize":1,"name":"game__625c20c9-307e-4701-b241-2275f8cc2fe1"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"mwbTfuWR3YcTgifuAAAF"},{"clients":{},"clientsSize":2,"name":"game__625c20c9-307e-4701-b241-2275f8cc2fe1"},{"clients":{},"clientsSize":1,"name":"26-UUEv_4iXEZpZIAAAH"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"26-UUEv_4iXEZpZIAAAH"},{"clients":{},"clientsSize":1,"name":"FQXCHIDThk6_gzxMAAAJ"},{"clients":{},"clientsSize":1,"name":"game__e8a672a5-96ff-4c61-8c16-389541bb9708"}],"service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"26-UUEv_4iXEZpZIAAAH"},{"clients":{},"clientsSize":1,"name":"2CLxyKLIZB2PHpU_AAAL"},{"clients":{},"clientsSize":1,"name":"game__29e4dd0f-4d3d-4152-b164-842fe3e78d47"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"2CLxyKLIZB2PHpU_AAAL"},{"clients":{},"clientsSize":2,"name":"game__29e4dd0f-4d3d-4152-b164-842fe3e78d47"},{"clients":{},"clientsSize":1,"name":"QCTnMgUUPgiH1sIhAAAN"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"2CLxyKLIZB2PHpU_AAAL"},{"clients":{},"clientsSize":2,"name":"game__29e4dd0f-4d3d-4152-b164-842fe3e78d47"},{"clients":{},"clientsSize":1,"name":"Ye-3SjTCuerX2xR1AAAP"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":2,"name":"game__29e4dd0f-4d3d-4152-b164-842fe3e78d47"},{"clients":{},"clientsSize":1,"name":"Ye-3SjTCuerX2xR1AAAP"},{"clients":{},"clientsSize":1,"name":"BRMKGpAUJd8QgX_uAAAR"}],"service":"user-service"}
+{"level":"debug","message":"Server is running on port 3000","service":"user-service"}
+{"level":"debug","message":"create","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"EozhuNJY-zNqsQdKAAAB"},{"clients":{},"clientsSize":1,"name":"game__435b4152-039e-4b67-83eb-87ee684d51d1"}],"service":"user-service"}
+{"level":"debug","message":"join","service":"user-service"}
+{"level":"debug","message":"socketId: ","service":"user-service"}
+{"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"EozhuNJY-zNqsQdKAAAB"},{"clients":{},"clientsSize":2,"name":"game__435b4152-039e-4b67-83eb-87ee684d51d1"},{"clients":{},"clientsSize":1,"name":"e6OybZJHaEMtnpOmAAAD"}],"service":"user-service"}
