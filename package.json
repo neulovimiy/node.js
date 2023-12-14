@@ -1,7 +1,6 @@
 {
   "scripts": {
     "dev": "nodemon src/index.js"
-    
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -12,7 +11,7 @@
     "helmet": "^7.1.0",
     "mongoose": "^8.0.1",
     "socket.io": "^4.7.2",
+    "uuid": "^9.0.1",
     "ws": "^8.14.2"
   }
- 
 }

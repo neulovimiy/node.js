@@ -5,6 +5,74 @@ const session = require('express-session');
 const app = express();
 const http = require("http");
 const server = http.Server(app);
+const { Server } = require('socket.io');
+const io = new Server(server);
+const { v4: uuidv4 } = require('uuid');
+
+const getRooms = () => io.sockets.adapter.rooms;
+const getRoomsWithDetails = () => {
+    const rooms = [];
+    for(let [key, value] of getRooms()) {
+        rooms.push({
+            name: key,
+            clients: value,
+            clientsSize: value.size,
+        });
+    }
+    return rooms;
+}
+
+const onRoomData = (socket, roomName) => socket.on('data', (data) => {
+    socket.broadcast.to(roomName).emit('data', data);
+});
+
+const onStartGame = (socket, roomName) => socket.on('start-game', () => {
+    socket.broadcast.to(roomName).emit('start-game');
+});
+const onEndGame = (socket, roomName) => socket.on('end-game', () => {
+    io.to(roomName).emit('end-game');
+    socket.leave(roomName);
+});
+
+const onScore = (socket, roomName) => socket.on('score', data => {
+    socket.broadcast.to(roomName).emit('score', data);
+});
+
+// const onDisconnect = (socket, roomName) => socket.on('disconnect', (data) => {
+//     console.log('disconnect', data);
+//     socket.leave(roomName);
+// });
+
+io.on('connection', (socket) => {
+    // console.log('a user connected: ', socket.id);
+
+    const roomsWithDetails = getRoomsWithDetails();
+    const gameRooms = roomsWithDetails.filter(room => room.name.indexOf('game__') > -1);
+    const roomWithOneClient = gameRooms.find(room => room.clientsSize === 1);
+
+    if(roomWithOneClient) {
+        console.log('join');
+        console.log('socketId: ', socket.id);
+        socket.join(roomWithOneClient.name);
+        onRoomData(socket, roomWithOneClient.name);
+        onStartGame(socket, roomWithOneClient.name);
+        io.emit('start-game');
+        onEndGame(socket, roomWithOneClient.name);
+        onScore(socket, roomWithOneClient.name);
+    } else {
+        console.log('create');
+        console.log('socketId: ', socket.id);
+        const newRoomName = 'game__' + uuidv4();
+        socket.join(newRoomName);
+        onRoomData(socket, newRoomName);
+        onStartGame(socket, newRoomName);
+        onEndGame(socket, newRoomName);
+        onScore(socket, newRoomName);
+    }
+
+    console.log(getRoomsWithDetails());
+});
+
 app.set("port",3000);
 app.use(express.json());
 app.use(express.static("public"));
@@ -44,7 +112,7 @@ app.get("/occupied", (req, res) => {
 });
 
 app.get('/gameOnline', function(req, res) {
-  res.render('gameOnline');
+    res.render('gameOnline');
 });
 
 app.get('/home', (req, res) => {
@@ -63,6 +131,8 @@ app.post("/signup", async (req, res) => {
         password: req.body.password,
         record: 0
     }
+
+    console.log(data);
 
     const existingUser = await collection.findOne({ name: data.name });
 
@@ -84,7 +154,7 @@ app.post("/login", async (req, res) => {
         const check = await collection.findOne({ name: req.body.username });
         if (!check) {
             res.redirect('/unknown'); // Перенаправление на страницу ошибки
-        } 
+        }
         else{
             const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
             if (!isPasswordMatch) {

@@ -8,7 +8,7 @@ singlePlayerButton.addEventListener("click", function () {
 });
 // Обработчик события для кнопки "Онлайн"
 document.getElementById('onlineButton').addEventListener('click', function() {
-    window.location.href = '/expectation'; // перенаправление на страницу /expectation
+    window.location.href = '/gameOnline'; // перенаправление на страницу /expectation
 });
 document.getElementById('leaderboardButton').addEventListener('click', function() {
     window.location.href = '/record';

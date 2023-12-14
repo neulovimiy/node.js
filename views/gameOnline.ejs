@@ -4,12 +4,23 @@
     <meta charset="UTF-8">
     <title>Racer's Quest</title>
     <link rel="stylesheet" href="../css/gameStyle.css">
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" integrity="sha384-mZLF4UVrpi/QTWPA7BjNPEnkIfRFn4ZEO3Qt/HFklTJBj/gBOV8G3HcKn4NfQblz" crossorigin="anonymous"></script>
 </head>
 <body>
+<!--  для отображения рекорда -->
+<div id="recordDisplay"></div>
 <div class="white-overlay1"></div>
+<div class="white-overlay2"></div>
 <!-- Game canvas -->
-<canvas id="canvas" width="400" height="500"></canvas>
+<div class="canvases">
+    <!--    <button id="start-game">Start game</button>-->
+    <canvas id="canvasLocal" width="400" height="500"></canvas>
+    <canvas id="canvasRemote" width="400" height="500"></canvas>
+</div>
+
+<!-- Restart button -->
 <button id="exitButton" class="game-button">Home</button>
+<button id="restartButton" class="game-button">Перезапуск</button>
 <script src="../gameOnline.js"></script>
 </body>
 </html>
