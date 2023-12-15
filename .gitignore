@@ -14,7 +14,7 @@ lerna-debug.log
 .custom-env
 
 # cache files
-.log
+./log/**
 .yarn/cache
 .yarn/unplugged
 .yarn/install-state.gz
