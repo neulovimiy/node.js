@@ -234,3 +234,6 @@
 {"level":"debug","message":"socketId: ","service":"user-service"}
 {"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"IhMwGuRrwvNynoWzAAAB"},{"clients":{},"clientsSize":2,"name":"game__2525a3c5-0b7c-48f4-8b15-e61a537b052d"},{"clients":{},"clientsSize":1,"name":"2gvS3LohLt8qFNKYAAAD"}],"service":"user-service"}
 {"level":"debug","message":"Server is running on port 3000","service":"user-service"}
+{"level":"debug","message":"Server is running on port 3000","service":"user-service"}
+{"level":"debug","message":{"name":"11","password":"11","record":0},"service":"user-service"}
+{"level":"debug","message":[{"__v":0,"_id":"657c6374e5e0f9729a3000f9","name":"11","password":"$2b$10$zPrtaDrnOBcjAP6M.T.FS.QC7IoBAa6TL1jEB7DCExAY4Lm.cZaL6","record":0}],"service":"user-service"}
