@@ -30,3 +30,4 @@ lerna-debug.log
 
 # Custom log files
 **/debug.log
+**/error.log
