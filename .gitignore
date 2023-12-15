@@ -14,7 +14,7 @@ lerna-debug.log
 .custom-env
 
 # cache files
-debug.log
+/.log
 .yarn/cache
 .yarn/unplugged
 .yarn/install-state.gz
@@ -27,3 +27,6 @@ debug.log
 
 .vscode-test
 .vscode
+
+# Custom log files
+**/debug.log
