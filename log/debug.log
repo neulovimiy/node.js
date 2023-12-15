@@ -233,3 +233,4 @@
 {"level":"debug","message":"join","service":"user-service"}
 {"level":"debug","message":"socketId: ","service":"user-service"}
 {"level":"debug","message":[{"clients":{},"clientsSize":1,"name":"IhMwGuRrwvNynoWzAAAB"},{"clients":{},"clientsSize":2,"name":"game__2525a3c5-0b7c-48f4-8b15-e61a537b052d"},{"clients":{},"clientsSize":1,"name":"2gvS3LohLt8qFNKYAAAD"}],"service":"user-service"}
+{"level":"debug","message":"Server is running on port 3000","service":"user-service"}
