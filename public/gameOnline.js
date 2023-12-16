@@ -146,29 +146,7 @@ let bonus = new Audio();
 bonus.src = "audio/bonus.mp3";
 accident.src = "audio/accident.mp3";
 end.src = "audio/end.mp3";
-// Добавьте переменную для хранения рекорда
-let record = 0;
-let recordDisplay = document.getElementById('recordDisplay');
 
-// Функция для обновления рекорда
-function updateRecord() {
-    if (score >= record) {
-        record = score;
-        // Обновление текста с рекордом над игровым окном
-        recordDisplay.innerText = "Рекорд:" + record;
-        // Removed localStorage usage // Сохранение рекорда в localStorage
-    }
-}
-
-// Проверка наличия рекорда в localStorage при начале игры
-window.onload = function() {
-    // Removed localStorage usage
-    if (storedRecord) {
-        // Removed localStorage usage // Загрузка рекорда из localStorage
-        // Обновление текста с рекордом на странице
-        recordDisplay.innerText = "Рекорд: " + record;
-    }
-};
 const interval = setInterval(() => {
     if(isLocalGameOver) {
         socket.emit('end-game');
@@ -185,7 +163,6 @@ function stop(ctx) {
     isLocalGameOver = true;
     // restartButton.style.display = "block";
     exitButton.style.display="block"
-    updateRecord();
     exitButton.addEventListener("click", function(){
         window.location.href = "/home";
 
@@ -511,14 +488,14 @@ socket.on('end-game', () => {
     stop(localContext);
     if(localScore > remoteScore) {
         localContext.fillStyle = "Green";
-        localContext.fillText("Win", 100, 400);
+        localContext.fillText("Win", 165, 250);
         remoteContext.fillStyle = "Red";
-        remoteContext.fillText("Lose", 100, 400);
+        remoteContext.fillText("Lose", 155, 250);
     } else if(localScore < remoteScore) {
         localContext.fillStyle = "Red";
-        localContext.fillText("Lose", 100, 400);
+        localContext.fillText("Lose", 155, 250);
         remoteContext.fillStyle = "Green";
-        remoteContext.fillText("Win", 100, 400);
+        remoteContext.fillText("Win", 165, 250);
     }
 });
 
@@ -531,13 +508,6 @@ socket.on('start-game', () => {
         render(localRenderOptions);
     }, timer);
 });
-
-// startGameBTN.onclick = () => {
-//     socket.emit('start-game');
-//     render(localRenderOptions);
-// }
-
-// render(remoteRenderOptions);
 
 // Event listeners for keydown and keyup events
 addEventListener("keydown", function (event) {
@@ -579,43 +549,3 @@ addEventListener("keyup", function (event) {
         }
     }
 });
-// Функция для загрузки текущего рекорда пользователя с сервера
-function fetchRecord() {
-    fetch('/get-record')
-        .then(response => response.json())
-        .then(data => {
-            record = data.record;
-            recordDisplay.innerText = "Рекорд: " + record;
-        })
-        .catch(error => console.error('Error fetching record:', error));
-}
-
-// Функция для обновления рекорда на сервере
-function updateServerRecord(newRecord) {
-    fetch('/update-record', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ record: newRecord }),
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Record updated:', data);
-        })
-        .catch(error => console.error('Error updating record:', error));
-}
-
-// Изменение функции updateRecord для включения взаимодействия с сервером
-function updateRecord() {
-    if (localScore > record) {
-        record = localScore;
-        recordDisplay.innerText = "Рекорд: " + record;
-        updateServerRecord(record); // Обновление рекорда на сервере
-    }
-}
-
-// Запрос текущего рекорда пользователя при загрузке игры
-window.onload = function() {
-    fetchRecord();
-};

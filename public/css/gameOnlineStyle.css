@@ -13,14 +13,12 @@ body {
     display: none;
     position: absolute;
     top: calc(50% + 110px);
-    transform: translateX(0%);
     font-size: 20px;
     width: 100px;
     height: 40px;
     text-align: center;
     line-height: 0px; /* Выравнивание текста по вертикали внутри кнопки */
     text-indent: -13px; /* Смещение текста влево */
-    z-index: 2; /* Установка z-index выше белой полосы */
 }
 
 /* Styling for the start screen elements */
@@ -45,16 +43,32 @@ body {
     letter-spacing: 1px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-
-/* Styling for the game canvas */
-#canvas {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  #divider {
+    height: 500px;
+  width: 40px;
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -77%);
+  }
+#canvasRemote {
+    /* другие стили */
+    left: 5%; /* Или значение, которое вы считаете подходящим */
+    transform: translateX(5%); /* Это значение может потребоваться изменить, чтобы подвинуть элемент вправо */
 }
-
+#canvasLocal {
+    /* другие стили */
+    left: -5%; /* Или значение, которое вы считаете подходящим */
+    transform: translateX(-5%); /* Это значение может потребоваться изменить, чтобы подвинуть элемент вправо */
+} 
 /* Стили для текста подтверждения готовности */
 .start-screen p {
     font-size: 28px; /* Измените размер на нужный вам */
