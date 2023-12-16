@@ -11,7 +11,6 @@ let okLeft = false;
 let okRight = false;
 let okUp = false;
 let okDown = false;
-let canDrawHeart = true;
 let exitButton = document.getElementById("exitButton");
 // Images and their initial positions
 let line = new Image();
@@ -47,10 +46,6 @@ pause.src = "img/pause.png"
 pause.X = 154;
 pause.Y = 200;
 
-let heart = new Image();
-heart.src = "img/heart.png";
-heart.X = 100;
-heart.Y = 100;
 
 let myCar = new Image();
 myCar.src = "img/myCar.png";
@@ -236,63 +231,6 @@ function drawCar({
     ctx.drawImage(car, car.X, car.Y);
 }
 
-// Function to draw the heart bonus
-function drawHeart({
-                       ctx,
-                       lives,
-                       score,
-                       callback,
-                       isGameOver
-                   }) {
-    if (!isGameOver && score > 30 && canDrawHeart) {
-        let carCenterX = myCar.X + myCar.width / 2;
-        let carCenterY = myCar.Y + myCar.height / 2;
-
-        let heartCenterX = heart.X + heart.width / 2;
-        let heartCenterY = heart.Y + heart.height / 2;
-
-        let distanceX = Math.abs(carCenterX - heartCenterX);
-        let distanceY = Math.abs(carCenterY - heartCenterY);
-
-        let carRadius = (myCar.width + myCar.height) / 4; // Car radius
-        let heartRadius = (heart.width + heart.height) / 4; // Heart radius
-
-        if (distanceX < carRadius + heartRadius && distanceY < carRadius + heartRadius) {
-            crash = true;
-            heart.X = Math.floor(Math.random() * 335); // Random horizontal position
-            heart.Y = -100; // Initial position above the visible area
-            if (lives >= 1) {
-                callback(lives++);
-                bonus.play();
-                lifeLost = true; // Set the life lost flag
-            }
-            if (lives === 3) {
-                canDrawHeart = false; // Set the flag to prevent further heart drawing
-            }
-            if (lives === 0) {
-                stop(ctx);
-                end.play();
-            }
-        } else {
-            crash = false;
-        }
-
-        if (!crash) {
-            ctx.drawImage(heart, heart.X, heart.Y);
-
-            // Check if the heart has gone beyond the bottom edge
-            if (heart.Y >= 500) {
-                // Return the heart to the top edge and set a new X coordinate
-                heart.X = Math.floor(Math.random() * 335); // Random horizontal position
-                heart.Y = -100; // Initial position above the visible area
-                lifeLost = false; // Reset the life lost flag
-            }
-
-            heart.Y += Math.ceil((score + 1) / 10);
-        }
-    }
-}
-
 // Function to generate a random X position for a car, avoiding collisions with existing cars
 function generateRandomCarPosition(existingCars) {
     let newX;
@@ -322,7 +260,7 @@ function drawEnemyCar1({
             } else if (lives === 1) {
                 callback(--lives);
             }
-            if (lives < 1) {
+            if (lives === 0) {
                 stop(ctx);
                 end.play();
             }
@@ -357,7 +295,7 @@ function drawEnemyCar2({
             } else if (lives === 1) {
                 callback(lives - 1);
             }
-            if (lives < 1) {
+            if (lives === 0) {
                 stop(ctx);
                 end.play();
             }
@@ -424,13 +362,6 @@ function render({
             isUp,
             isDown,
             ctx
-        });
-        drawHeart({
-            ctx,
-            score,
-            lives,
-            isGameOver,
-            callback: livesCallback
         });
         drawEnemyCar1({
             ctx,

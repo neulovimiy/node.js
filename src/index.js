@@ -94,6 +94,15 @@ app.get("/", function (req, res) {
 app.get("/signup", (req, res) => {
     res.render("signup");
 });
+app.get("/wintable", async (req, res) => {
+    try {
+        const users = await collection.find({}).sort({ win: -1 }); // Замените 'win' на название соответствующего поля в вашей базе данных
+        res.render("wintable", { users: users });
+    } catch (error) {
+        logger.error('Ошибка при получении данных для таблицы побед:', error);
+        res.redirect('/home');
+    }
+});
 app.get("/expectation", (req, res) => {
     res.render("expectation");
 });

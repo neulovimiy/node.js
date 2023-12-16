@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Racer's Quest - Таблица лидеров</title>
+    <!-- Ссылки на стили -->
+    <link rel="stylesheet" href="../css/recordStyle.css">
+</head>
+<body>
+    <!-- Таблица лидеров -->
+    <div class="winboard">
+        <h1>Таблица лидеров</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Имя пользователя</th>
+                    <th>Победы</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(function(user) { %>
+                    <tr>
+                        <td><%= user.name %></td>
+                        <td><%= user.Lotwin %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <!-- Ссылка на возвращение в главное меню -->
+    <a href="/home">Вернуться в главное меню</a>
+</body>
+</html>

@@ -24,6 +24,10 @@ const Loginschema = new mongoose.Schema({
     record:{
         type: Number,
         required: 0
+    },
+    Lotwin:{
+        type: Number,
+        required: 0
     }
 });
 

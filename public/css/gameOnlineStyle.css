@@ -11,15 +11,18 @@ body {
 /* Стили для кнопки exitButton */
 #exitButton {
     display: none;
-    position: absolute;
-    top: calc(50% + 110px);
+     position: absolute;
+     top: 67%; /* Расположить кнопку по вертикали в центре родительского элемента */
+     left: 49%; /* Расположить кнопку по горизонтали в центре родительского элемента */
+    transform: translate(-50%, -50%); /* Сдвиг кнопки на 50% ширины и 50% высоты своего родительского элемента */
     font-size: 20px;
-    width: 100px;
+     width: 100px;
     height: 40px;
-    text-align: center;
+     text-align: center;
     line-height: 0px; /* Выравнивание текста по вертикали внутри кнопки */
-    text-indent: -13px; /* Смещение текста влево */
-}
+     text-indent: -13px;
+     z-index: 2;
+} 
 
 /* Styling for the start screen elements */
 .start-screen {
@@ -51,7 +54,7 @@ body {
   }
   
   #divider {
-    height: 500px;
+    height: 510px;
   width: 40px;
   background-color: white;
   position: absolute;
@@ -72,4 +75,31 @@ body {
 /* Стили для текста подтверждения готовности */
 .start-screen p {
     font-size: 28px; /* Измените размер на нужный вам */
+}
+.label {
+    position: absolute;
+    color: #928dab; /* Or any color you want for the text */
+    font-size: 26px;
+     z-index: 2; 
+     top: 58%;
+    /* Additional styling */
+}
+.left-label {
+    transform: translate(-30%, 185%);
+    left: 34%;
+     /* Adjust as necessary */
+}
+.right-label {
+    transform: translate(30%, 185%);
+    left: 60%;
+}
+.white-stripe {
+    height: 40px;
+    width: 850px;
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 290%);
+    z-index: 1;
 }
