@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const connect = mongoose.connect("mongodb://127.0.0.1:27017/Racer");
+const connectionString = process.env.DB_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/Racer';
+const connect = mongoose.connect(connectionString);
 
 // Check database connected or not
 connect.then(() => {

@@ -74,7 +74,9 @@ io.on('connection', (socket) => {
     logger.debug(getRoomsWithDetails());
 });
 
-app.set("port",3000);
+const APP_PORT = process.env.APP_PORT || 3000;
+
+app.set("port", APP_PORT);
 app.use(express.json());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
@@ -220,6 +222,6 @@ app.get('/record', async (req, res) => {
         res.redirect('/home');
     }
 });
-server.listen(3000,function () {
-    logger.debug('Server is running on port 3000');
+server.listen(APP_PORT,function () {
+    logger.debug(`Server is running on port ${APP_PORT}`);
 });
