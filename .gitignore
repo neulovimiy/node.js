@@ -27,7 +27,3 @@ lerna-debug.log
 
 .vscode-test
 .vscode
-
-# Custom log files
-**/debug.log
-**/error.log

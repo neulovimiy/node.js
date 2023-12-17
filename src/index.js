@@ -1,70 +1,73 @@
-const express = require("express");
-const collection = require("./mongo");
-const bcrypt = require('bcrypt');
-const session = require('express-session');
-const app = express();
-const http = require("http");
-const server = http.Server(app);
-const { Server } = require('socket.io');
-const io = new Server(server);
-const { v4: uuidv4 } = require('uuid');
-const logger = require('./logger');
-
+const express = require("express");  // Importing Express framework
+const collection = require("./mongo");  // Importing MongoDB connection
+const bcrypt = require('bcrypt');  // Importing bcrypt for password hashing
+const session = require('express-session');  // Importing session middleware for Express
+const app = express();  // Creating an Express application
+const http = require("http");  // Importing HTTP module
+const server = http.Server(app);  // Creating an HTTP server with the Express app
+const { Server } = require('socket.io');  // Importing Socket.IO
+const io = new Server(server);  // Creating a new Socket.IO server
+const { v4: uuidv4 } = require('uuid');  // Importing UUID for unique identifier generation
+const logger = require('./logger');  // Importing a custom logger module
+// Function to get all active rooms
 const getRooms = () => io.sockets.adapter.rooms;
+// Функция для получения подробностей обо всех активных комнатах
 const getRoomsWithDetails = () => {
-    const rooms = [];
-    for(let [key, value] of getRooms()) {
-        rooms.push({
-            name: key,
-            clients: value,
-            clientsSize: value.size,
+    const rooms = [];  // Создаем массив для хранения информации о комнатах
+    for(let [key, value] of getRooms()) {  // Перебираем все комнаты
+        rooms.push({  // Добавляем информацию о каждой комнате в массив
+            name: key,  // Название комнаты
+            clients: value,  // Клиенты в комнате
+            clientsSize: value.size,  // Количество клиентов в комнате
         });
     }
-    return rooms;
+    return rooms;  // Возвращаем массив с информацией о комнатах
 }
-
+// Обработчик событий для передачи данных между клиентами в комнате
 const onRoomData = (socket, roomName) => socket.on('data', (data) => {
-    socket.broadcast.to(roomName).emit('data', data);
+    socket.broadcast.to(roomName).emit('data', data);  // Передача данных всем клиентам в комнате, кроме отправителя
 });
 
+// Обработчик события начала игры
 const onStartGame = (socket, roomName) => socket.on('start-game', () => {
-    socket.broadcast.to(roomName).emit('start-game');
+    socket.broadcast.to(roomName).emit('start-game');  // Уведомление всех клиентов в комнате о начале игры
 });
+
+// Обработчик события окончания игры
 const onEndGame = (socket, roomName) => socket.on('end-game', () => {
-    io.to(roomName).emit('end-game');
-    socket.leave(roomName);
+    io.to(roomName).emit('end-game');  // Уведомление всех клиентов в комнате об окончании игры
+    socket.leave(roomName);  // Выход клиента из комнаты
 });
 
+// Обработчик события обновления счета
 const onScore = (socket, roomName) => socket.on('score', data => {
-    socket.broadcast.to(roomName).emit('score', data);
+    socket.broadcast.to(roomName).emit('score', data);  // Передача информации о счете всем клиентам в комнате
 });
 
-// const onDisconnect = (socket, roomName) => socket.on('disconnect', (data) => {
-//     logger.debug('disconnect', data);
-//     socket.leave(roomName);
-// });
-
+// Обработка подключения нового клиента
 io.on('connection', (socket) => {
-    // logger.debug('a user connected: ', socket.id);
-
+    // Получаем информацию об активных игровых комнатах
     const roomsWithDetails = getRoomsWithDetails();
     const gameRooms = roomsWithDetails.filter(room => room.name.indexOf('game__') > -1);
     const roomWithOneClient = gameRooms.find(room => room.clientsSize === 1);
-
+    // Если есть комната с одним клиентом, присоединяем к ней
     if(roomWithOneClient) {
         logger.debug('join');
         logger.debug('socketId: ', socket.id);
         socket.join(roomWithOneClient.name);
+        // Установка обработчиков событий для комнаты
         onRoomData(socket, roomWithOneClient.name);
         onStartGame(socket, roomWithOneClient.name);
         io.emit('start-game');
         onEndGame(socket, roomWithOneClient.name);
         onScore(socket, roomWithOneClient.name);
     } else {
+        // Если подходящей комнаты нет, создаем новую
         logger.debug('create');
         logger.debug('socketId: ', socket.id);
         const newRoomName = 'game__' + uuidv4();
         socket.join(newRoomName);
+        // Установка обработчиков событий для новой комнаты
         onRoomData(socket, newRoomName);
         onStartGame(socket, newRoomName);
         onEndGame(socket, newRoomName);

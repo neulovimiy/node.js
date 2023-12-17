@@ -1,8 +1,11 @@
-const mongoose = require('mongoose');
+// Importing Mongoose for MongoDB interaction
+const mongoose = require('mongoose'); 
+// Setting up the MongoDB connection string
 const connectionString = process.env.DB_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/Racer';
+// Establishing a connection to MongoDB
 const connect = mongoose.connect(connectionString);
 
-// Check database connected or not
+// Handling the database connection status
 connect.then(() => {
     console.log("Database Connected Successfully");
 })
