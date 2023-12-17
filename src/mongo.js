@@ -26,11 +26,13 @@ const Loginschema = new mongoose.Schema({
     },
     record:{
         type: Number,
-        required: 0
+        required: true,
+        default: 0
     },
-    Lotwin:{
+    lotwin:{
         type: Number,
-        required: 0
+        required: true,
+        default: 0
     }
 });
 

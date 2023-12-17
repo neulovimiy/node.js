@@ -99,7 +99,7 @@ app.get("/signup", (req, res) => {
 });
 app.get("/wintable", async (req, res) => {
     try {
-        const users = await collection.find({}).sort({ win: -1 }); // Замените 'win' на название соответствующего поля в вашей базе данных
+        const users = await collection.find({}).sort({ lotwin: -1 }); // Замените 'win' на название соответствующего поля в вашей базе данных
         res.render("wintable", { users: users });
     } catch (error) {
         logger.error('Ошибка при получении данных для таблицы побед:', error);
