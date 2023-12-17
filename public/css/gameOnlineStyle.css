@@ -72,10 +72,6 @@ body {
     left: -5%; /* Или значение, которое вы считаете подходящим */
     transform: translateX(-5%); /* Это значение может потребоваться изменить, чтобы подвинуть элемент вправо */
 } 
-/* Стили для текста подтверждения готовности */
-.start-screen p {
-    font-size: 28px; /* Измените размер на нужный вам */
-}
 .label {
     position: absolute;
     color: #928dab; /* Or any color you want for the text */

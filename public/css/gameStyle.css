@@ -1,109 +1,98 @@
-/* Styling for the entire page */
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
+body, html {
     margin: 0;
-    background: linear-gradient(to bottom, #00d2ff, #928dab);
-    color: #fff;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #00d2ff, #928dab); /* Фон по бокам */
 }
-
-/* Стили для белой полосы */
-.white-overlay1 {
-    position: absolute;
-    top: 16%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    height: 30px; /* Высота вашей белой полосы */
-    background-color: white;
-    z-index: 1; /* Установка z-index ниже заднего фона */
-}
-.white-overlay2 {
-    position: absolute;
-    top: 86%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    height: 57px; /* Высота вашей белой полосы */
-    background-color: white;
-    z-index: 1; /* Установка z-index ниже заднего фона */
-}
-
-/* Стили для кнопки exitButton */
-#exitButton {
-    display: none;
-    position: absolute;
-    top: calc(50% - 285px);
-    transform: translateX(235%);
-    font-size: 12px;
-    width: 70px;
-    height: 30px;
-    text-align: center;
-    line-height: 0px; /* Выравнивание текста по вертикали внутри кнопки */
-    text-indent: -15px; /* Смещение текста влево */
-    z-index: 2; /* Установка z-index выше белой полосы */
-}
-
-/* Styling for the start screen elements */
-.start-screen {
+  
+.content-wrapper {
+    width: 100%;
+    max-width: 1200px; /* Максимальная ширина контента */
+    height: auto; /* Или 100vh, если вы хотите, чтобы контейнер занимал весь экран */
+    margin: 0 auto; /* Центрирование контента */
+    position: relative; /* Для позиционирования дочерних элементов */
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
+    justify-content: center; /* Центрирование содержимого по вертикали */
 }
-#recordDisplay {
-    color:#928dab;
+
+#canvas {
+    width: 400px; /* Фиксированная ширина canvas */
+    height: 500px; /* Высота canvas */
+    margin-top: 50px; 
+}
+
+/* Стили для белой полосы, с фиксированной шириной */
+.white-overlay1, .white-overlay2 {
     position: absolute;
-    top: calc(50% - 268px);
-    transform: translateX(-135%);
-    font-size: 24px;
-    z-index: 2; /* Установка z-index выше белой полосы */
-}/* Отрицательное значение для смещения влево */
+    width: 400px; /* Фиксированная ширина полос */
+    background-color: white;
+    z-index: 1;
+}
+
+.white-overlay1 {
+    top: 20px; /* Вы можете настроить это значение */
+    height: 30px; /* Фиксированная высота полосы */
+}
+
+.white-overlay2 {
+    bottom: -38px; /* Вы можете настроить это значение */
+    height: 38px; /* Фиксированная высота полосы */
+}
+/* Адаптивное позиционирование и размеры для элементов интерфейса */
+#exitButton, #restartButton {
+    position: absolute;
+    font-size: 1.5vh; /* Относительный размер шрифта */
+}
 
 
-
-
+#recordDisplay {
+    top: 20px; /* Позиционирование относительно верхнего края */
+    left: 40%; /* Центрирование элемента */
+    transform: translateX(-50%);
+    color: #928dab;
+    z-index:2 ;
+    position: absolute;
+    font-size: 3vh;
+}
 /* Styling for game buttons */
-
 .game-button {
-    font-size: 24px;
-    padding: 15px 30px;
-    margin: 10px;
+    font-size: 2vw;
+    padding: 1vh 2vw;
+    margin: 1vh;
     cursor: pointer;
     background-color: #778899;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 1vw;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.1vw;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-
-/* Styling for the game canvas */
-#canvas {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+/* Styling for the exit button */
+#exitButton {
+    top: 12.5px; /* Позиционирование относительно верхнего края */
+    left: 62%; /* Центрирование элемента */
+    transform: translateX(-50%);
+    width: 100px; /* Относительная ширина кнопки */
+    height: 30px; /* Относительная высота кнопки */
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    display: none;
 }
 
 /* Styling for the restart button */
 #restartButton {
-    display: none;
-    position: absolute;
-    top: calc(50% + 235px); /* Подвинуть кнопку перезапуска вниз от центра игрового окна */
-    transform: translateX(0%);
-    width: 150;
-    text-align: center;
-    height:50;
-    font-size: 18;
+    top: 542px; /* Позиционирование относительно верхнего края */
+    left: 50%; /* Центрирование элемента */
+    transform: translateX(-50%);
+    width: 200px; /* Относительная ширина кнопки */
+    height: 40px; /* Относительная высота кнопки */
+    justify-content: center;
+    align-items: center;
     z-index: 2;
-}
-
-/* Стили для текста подтверждения готовности */
-.start-screen p {
-    font-size: 28px; /* Измените размер на нужный вам */
+    display: none;
 }
