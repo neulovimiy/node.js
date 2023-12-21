@@ -7,17 +7,25 @@
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" integrity="sha384-mZLF4UVrpi/QTWPA7BjNPEnkIfRFn4ZEO3Qt/HFklTJBj/gBOV8G3HcKn4NfQblz" crossorigin="anonymous"></script>
 </head>
 <body>
-<!-- Game canvas -->
-<div class="canvases">
-    <!--    <button id="start-game">Start game</button>-->
-    <canvas id="canvasLocal" width="400" height="500"></canvas>
-    <div id="divider"></div>
-    <canvas id="canvasRemote" width="400" height="500"></canvas>
-</div>
-<div class="label left-label">твой экран</div>
-<div class="label right-label">противник</div>
-<div class="white-stripe"></div>
-<button id="exitButton" class="game-button">Home</button>
+    <div class="content-wrapper">
+        <div class="game-area">
+            <div class="canvas-wrapper">
+                <canvas id="canvasLocal" width="400" height="500"></canvas>
+                <div class="white-overlay white-overlay-top"></div>
+                <div class="white-overlay white-overlay-bottom"></div>
+            </div>
+            <div class="canvas-wrapper">
+                <canvas id="canvasRemote" width="400" height="500"></canvas>
+                <div class="white-overlay white-overlay-top"></div>
+                <div class="white-overlay white-overlay-bottom"></div>
+            </div>
+        </div>
+        <div class="labels">
+            <div class="left-label">твой экран</div>
+            <div class="right-label">противник</div>
+        </div>
+        <button id="exitButton" class="game-button">Home</button>
+    </div>    
 <script src="../gameOnline.js"></script>
 </body>
 </html>

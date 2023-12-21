@@ -29,7 +29,7 @@ const Loginschema = new mongoose.Schema({
         required: true,
         default: 0
     },
-    lotwin:{
+    winsCount:{
         type: Number,
         required: true,
         default: 0

@@ -33,8 +33,8 @@ body, html {
 }
 
 .white-overlay1 {
-    top: 20px; /* Вы можете настроить это значение */
-    height: 30px; /* Фиксированная высота полосы */
+    top: 12px; /* Вы можете настроить это значение */
+    height: 38px; /* Фиксированная высота полосы */
 }
 
 .white-overlay2 {
@@ -55,7 +55,7 @@ body, html {
     color: #928dab;
     z-index:2 ;
     position: absolute;
-    font-size: 3vh;
+    font-size: 25px;
 }
 /* Styling for game buttons */
 .game-button {
@@ -73,10 +73,10 @@ body, html {
 }
 /* Styling for the exit button */
 #exitButton {
-    top: 12.5px; /* Позиционирование относительно верхнего края */
-    left: 62%; /* Центрирование элемента */
+    top: 10px; /* Позиционирование относительно верхнего края */
+    left: 60%; /* Центрирование элемента */
     transform: translateX(-50%);
-    width: 100px; /* Относительная ширина кнопки */
+    width: 120px; /* Относительная ширина кнопки */
     height: 30px; /* Относительная высота кнопки */
     justify-content: center;
     align-items: center;

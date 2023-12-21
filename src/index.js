@@ -85,8 +85,9 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(session({
     secret: 'some-secret-value',
-    resave: false,
-    saveUninitialized: true
+    resave: true,
+    saveUninitialized: true,
+    expires : new Date(Date.now() + 3600000),
 }));
 app.set("view engine", "ejs");
 
@@ -99,7 +100,7 @@ app.get("/signup", (req, res) => {
 });
 app.get("/wintable", async (req, res) => {
     try {
-        const users = await collection.find({}).sort({ lotwin: -1 }); // Замените 'win' на название соответствующего поля в вашей базе данных
+        const users = await collection.find({}).sort({ winsCount: -1 }); // Замените 'win' на название соответствующего поля в вашей базе данных
         res.render("wintable", { users: users });
     } catch (error) {
         logger.error('Ошибка при получении данных для таблицы побед:', error);
@@ -131,6 +132,8 @@ app.get('/gameOnline', function(req, res) {
 });
 
 app.get('/home', (req, res) => {
+    // console.log('USER');
+    // console.log(req.session.user);
     // Убедитесь, что пользователь авторизован и у вас есть данные пользователя
     if (req.session.user) {
         res.render('home', { user: req.session.user });
@@ -138,6 +141,12 @@ app.get('/home', (req, res) => {
         // Если пользователь не авторизован, перенаправьте его на страницу входа или другую страницу
         res.redirect('/');
     }
+});
+
+app.post('/incrementUserWins', async (req, res) => {
+    const user = await collection.findOne({_id: req.session.user._id});
+    await collection.updateOne({_id: req.session.user._id}, {winsCount: ++user.winsCount});
+    logger.debug('WIN: ' + req.session.user.name);
 });
 
 app.post("/signup", async (req, res) => {

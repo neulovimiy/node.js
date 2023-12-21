@@ -408,6 +408,9 @@ socket.on('end-game', () => {
 
     stop(localContext);
     if(localScore > remoteScore) {
+        fetch('/incrementUserWins', {
+            method: 'post'
+        }).then(console.log).catch(console.error);
         localContext.fillStyle = "Green";
         localContext.fillText("Win", 165, 250);
         remoteContext.fillStyle = "Red";
