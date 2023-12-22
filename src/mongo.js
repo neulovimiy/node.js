@@ -28,15 +28,9 @@ const Loginschema = new mongoose.Schema({
         type: Number,
         required: true,
         default: 0
-    },
-    winsCount:{
-        type: Number,
-        required: true,
-        default: 0
     }
 });
 
 // collection part
 const collection = new mongoose.model("users", Loginschema);
-
 module.exports = collection;

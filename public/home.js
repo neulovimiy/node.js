@@ -13,6 +13,3 @@ document.getElementById('onlineButton').addEventListener('click', function() {
 document.getElementById('leaderboardButton').addEventListener('click', function() {
     window.location.href = '/record';
 });
-document.getElementById('winboardButton').addEventListener('click', function() {
-    window.location.href = '/wintable';
-});
