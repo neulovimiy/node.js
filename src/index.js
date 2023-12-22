@@ -37,6 +37,7 @@ const onStartGame = (socket, roomName) => socket.on('start-game', () => {
 const onEndGame = (socket, roomName) => socket.on('end-game', () => {
     io.to(roomName).emit('end-game');  // Уведомление всех клиентов в комнате об окончании игры
     socket.leave(roomName);  // Выход клиента из комнаты
+    socket.disconnect(true);
 });
 
 // Обработчик события обновления счета
@@ -58,9 +59,9 @@ io.on('connection', (socket) => {
         // Установка обработчиков событий для комнаты
         onRoomData(socket, roomWithOneClient.name);
         onStartGame(socket, roomWithOneClient.name);
-        io.emit('start-game');
-        onEndGame(socket, roomWithOneClient.name);
         onScore(socket, roomWithOneClient.name);
+        onEndGame(socket, roomWithOneClient.name);
+        io.emit('start-game');
     } else {
         // Если подходящей комнаты нет, создаем новую
         logger.debug('create');
@@ -70,8 +71,8 @@ io.on('connection', (socket) => {
         // Установка обработчиков событий для новой комнаты
         onRoomData(socket, newRoomName);
         onStartGame(socket, newRoomName);
-        onEndGame(socket, newRoomName);
         onScore(socket, newRoomName);
+        onEndGame(socket, newRoomName);
     }
 
     logger.debug(getRoomsWithDetails());

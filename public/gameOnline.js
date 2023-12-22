@@ -61,7 +61,7 @@ enemyCar2.Y = -450;
 // Функция обратного вызова для отрисовки локального игрока
 const localRenderCallback = function() {
     // Запрашиваем анимацию и передаем объект с параметрами для отрисовки
-    currentAnimation = requestAnimationFrame(() => render({
+    render({
         ctx: localContext,  // Контекст канваса для локального игрока
         isGameOver: isLocalGameOver,  // Состояние окончания игры
         car: myCar,  // Объект машины игрока
@@ -77,7 +77,7 @@ const localRenderCallback = function() {
         // Callback-функции для обновления счета и количества жизней
         livesCallback: currLives => localLives = currLives,
         scoreCallback: currScore => localScore = currScore,
-    }));
+    });
 };
 // Параметры для отрисовки локального игрока
 const localRenderOptions = {
@@ -96,48 +96,6 @@ const localRenderOptions = {
     scoreCallback: currScore => localScore = currScore,
 };
 
-// Функция обратного вызова для отрисовки удаленного игрока
-const remoteRenderCallback = function() {
-    // Аналогично localRenderCallback, но использует контекст и данные удаленного игрока
-    currentAnimation = requestAnimationFrame(() => render({
-        ctx: remoteContext,  // Контекст канваса для удаленного игрока
-        isGameOver: isRemoteGameOver,  // Состояние окончания игры для удаленного игрока
-        car: myCar,  // Объект машины (может быть общим или отдельным для каждого игрока)
-        // Флаги направления движения (могут быть общими или отдельными)
-        isLeft: okLeft,
-        isRight: okRight,
-        isUp: okUp,
-        isDown: okDown,
-        isPaused: isLocalPaused,  // Состояние паузы (обычно общее для обоих игроков)
-        score: remoteScore,  // Счет удаленного игрока
-        lives: remoteLives,  // Количество жизней удаленного игрока
-        callback: remoteRenderCallback,  // Функция обратного вызова для анимации
-        // Callback-функции для обновления счета и жизней удаленного игрока
-        livesCallback: currLives => remoteLives = currLives,
-        scoreCallback: currScore => remoteScore = currScore,
-    }));
-};
-// Параметры для отрисовки удаленного игрока
-const remoteRenderOptions = {
-    car: myCar,
-    ctx: remoteContext,
-    isGameOver: isRemoteGameOver,
-    isLeft: okLeft,
-    isRight: okRight,
-    isUp: okUp,
-    isDown: okDown,
-    isPaused: isLocalPaused,
-    score: remoteScore,
-    lives: remoteLives,
-    callback: remoteRenderCallback,
-    livesCallback: currLives => remoteLives = currLives,
-    scoreCallback: currScore => remoteScore = currScore,
-};
-
-
-// Audio elements
-let myReq;
-let currentAnimation;
 let accident = new Audio();
 let scoreSound = new Audio('audio/dobavlenie.mp3');
 let end = new Audio();
@@ -154,11 +112,10 @@ const interval = setInterval(() => {
 }, 10);
 
 // Function to stop the game
-function stop(ctx) {
-    cancelAnimationFrame(myReq);  // Отмена запланированной анимации
-    ctx.font = "40px Arial";  // Установка шрифта для текста
-    ctx.fillStyle = "Red";  // Установка цвета заливки для текста
-    ctx.fillText("Game over", 100, 200);  // Отображение текста "Game over" на канвасе
+function stop(ctx, score) {
+    // ctx.font = "40px Arial";  // Установка шрифта для текста
+    // ctx.fillStyle = "Red";  // Установка цвета заливки для текста
+    // ctx.fillText("Game over", 100, 200);  // Отображение текста "Game over" на канвасе
     isLocalGameOver = true;  // Установка флага окончания игры
     exitButton.style.display="block";  // Отображение кнопки выхода
     exitButton.addEventListener("click", function(){
@@ -187,7 +144,7 @@ function drawLives({
     ctx.font = "30px Arial";
     ctx.fillStyle = "White";
     ctx.fillText("Жизни: " + lives, 235, 48);
-    ctx.fillText("Счет: " + score, 35, 48);
+    if(score !== undefined) ctx.fillText("Счет: " + score, 35, 48);
 }
 
 // Function to draw road lines
@@ -261,6 +218,7 @@ function drawEnemyCar1({
                 callback(--lives);
             }
             if (lives === 0) {
+                callback(0);
                 stop(ctx);
                 end.play();
             }
@@ -293,6 +251,7 @@ function drawEnemyCar2({
                 callback(lives - 1);
             }
             if (lives === 0) {
+                callback(0);
                 stop(ctx);
                 end.play();
             }
@@ -343,47 +302,48 @@ if (isGameOver) {
 return;  // Если игра окончена, прекращаем рендеринг
 }
     socket.emit('score', score); // Отправка текущего счета на сервер
+    requestAnimationFrame(() => {
+        if (!isPaused) {
+            // Ряд функций для рисования различных элементов игры на канвасе
+            // Эти функции рисуют фон, линии, автомобиль игрока, вражеские автомобили и жизни
 
-    if (!isPaused) {
-        // Ряд функций для рисования различных элементов игры на канвасе
-        // Эти функции рисуют фон, линии, автомобиль игрока, вражеские автомобили и жизни
-
-        drawRect(ctx);
-        drawLines(ctx);
-        drawCar({
-            car,
-            isGameOver,
-            isLeft,
-            isRight,
-            isUp,
-            isDown,
-            ctx
-        });
-        drawEnemyCar1({
-            ctx,
-            score,
-            lives,
-            isGameOver,
-            callback: livesCallback
-        });
-        drawEnemyCar2({
-            ctx,
-            score,
-            lives,
-            isGameOver,
-            callback: livesCallback
-        });
-        drawLives({
-            ctx,
-            score,
-            lives,
-        });
-        ochki({
-            score,
-            callback: scoreCallback
-        });
-    }
-    callback();// Вызов callback функции для непрерывной анимации
+            drawRect(ctx);
+            drawLines(ctx);
+            drawCar({
+                car,
+                isGameOver,
+                isLeft,
+                isRight,
+                isUp,
+                isDown,
+                ctx
+            });
+            drawEnemyCar1({
+                ctx,
+                score,
+                lives,
+                isGameOver,
+                callback: livesCallback
+            });
+            drawEnemyCar2({
+                ctx,
+                score,
+                lives,
+                isGameOver,
+                callback: livesCallback
+            });
+            drawLives({
+                ctx,
+                score,
+                lives,
+            });
+            ochki({
+                score,
+                callback: scoreCallback
+            });
+        }
+        callback();// Вызов callback функции для непрерывной анимации
+    });
     const data = localCanvas.toDataURL();// Преобразование канваса в строку данных
     socket.emit('data', data);// Отправка данных канваса на сервер
 }
@@ -398,29 +358,35 @@ socket.on('data', (data) => {
 // Обработчик события получения счета от удаленного игрока
 socket.on('score', (data) => {
     remoteScore = data;// Обновление счета удаленного игрока
-})
+});
 // Обработчик события окончания игры
 socket.on('end-game', () => {
     // Установка стилей и остановка игры для локального и удаленного игроков
     // Отображение результатов игры (победа/поражение)
-    localContext.font = "40px Arial";
-    remoteContext.font = "40px Arial";
+    Promise.resolve()
+        .then(() => {
+            localContext.font = "40px Arial";
+            remoteContext.font = "40px Arial";
+        })
+        .then(() => {
+            // socket.on('data');
+            if(localScore > remoteScore) {
+                // fetch('/incrementUserWins', {
+                //     method: 'post'
+                // }).then(console.log).catch(console.error);
+                localContext.fillStyle = "Green";
+                localContext.fillText("Win", 165, 250);
+                // remoteContext.fillStyle = "Red";
+                // remoteContext.fillText("Lose", 155, 250);
+            } else if(localScore < remoteScore) {
+                localContext.fillStyle = "Red";
+                localContext.fillText("Lose", 155, 250);
+                // remoteContext.fillStyle = "Green";
+                // remoteContext.fillText("Win", 165, 250);
+            }
 
-    stop(localContext);
-    if(localScore > remoteScore) {
-        fetch('/incrementUserWins', {
-            method: 'post'
-        }).then(console.log).catch(console.error);
-        localContext.fillStyle = "Green";
-        localContext.fillText("Win", 165, 250);
-        remoteContext.fillStyle = "Red";
-        remoteContext.fillText("Lose", 155, 250);
-    } else if(localScore < remoteScore) {
-        localContext.fillStyle = "Red";
-        localContext.fillText("Lose", 155, 250);
-        remoteContext.fillStyle = "Green";
-        remoteContext.fillText("Win", 165, 250);
-    }
+            stop(localContext);
+        });
 });
 
 // Initial rendering call
