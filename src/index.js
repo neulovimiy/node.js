@@ -47,6 +47,7 @@ const onScore = (socket, roomName) => socket.on('score', data => {
 
 // Обработка подключения нового клиента
 io.on('connection', (socket) => {
+    
     // Получаем информацию об активных игровых комнатах
     const roomsWithDetails = getRoomsWithDetails();
     const gameRooms = roomsWithDetails.filter(room => room.name.indexOf('game__') > -1);

@@ -112,11 +112,12 @@ const interval = setInterval(() => {
 }, 10);
 
 // Function to stop the game
-function stop(ctx, score) {
-    // ctx.font = "40px Arial";  // Установка шрифта для текста
-    // ctx.fillStyle = "Red";  // Установка цвета заливки для текста
-    // ctx.fillText("Game over", 100, 200);  // Отображение текста "Game over" на канвасе
-    isLocalGameOver = true;  // Установка флага окончания игры
+function stop(ctx, isLocalPlayer) {
+    if(isLocalPlayer){
+        isLocalGameOver = true;  // Установка флага окончания игры для локального игрока
+    } else {
+        isRemoteGameOver = true; // Установка флага окончания игры для удаленного игрока
+    }
     exitButton.style.display="block";  // Отображение кнопки выхода
     exitButton.addEventListener("click", function(){
         window.location.href = "/home";  // Перенаправление на домашнюю страницу при клике на кнопку
@@ -199,7 +200,8 @@ function generateRandomCarPosition(existingCars) {
     } while (existingCars.some(car => Math.abs(newX - car.X) < 50)); // Check for collision with existing cars
     return newX;
 }
-
+let k1=0;
+let k2=0;
 // Function to draw the first enemy car
 function drawEnemyCar1({
                            ctx,
@@ -210,16 +212,15 @@ function drawEnemyCar1({
                        }) {
     if (!isGameOver) {
         if (checkCollision(myCar, enemyCar1)) {
+            socket.emit('collision', { player: 'local' });
             crash = true;
             enemyCar1.Y = myCar.Y - 500;
             enemyCar1.X = generateRandomCarPosition([enemyCar2]); // Pass the existing car for collision checking
-
-            if (lives === 1) {
-                callback(--lives);
-            }
+            lives=lives-1;
+            k1=k1+1;
             if (lives === 0) {
                 callback(0);
-                stop(ctx);
+                stop(ctx, true);
                 end.play();
             }
         } else {
@@ -235,24 +236,24 @@ function drawEnemyCar1({
 
 // Function to draw the second enemy car
 function drawEnemyCar2({
-                           ctx,
-                           lives,
-                           score,
-                           callback,
-                           isGameOver
-                       }) {
+    ctx,
+    lives,
+    score,
+    callback,
+    isGameOver
+}) {
     if (!isGameOver) {
         if (checkCollision(myCar, enemyCar2)) {
+            socket.emit('collision', { player: 'local' });
             crash = true;
             enemyCar2.Y = myCar.Y - 500;
-            enemyCar2.X = generateRandomCarPosition([enemyCar1]); // Pass the existing car for collision checking
+            enemyCar2.X = generateRandomCarPosition([enemyCar1]);
 
-            if (lives === 1) {
-                callback(lives - 1);
-            }
+            lives = lives - 1;
+            k2 = k2 + 1;
             if (lives === 0) {
                 callback(0);
-                stop(ctx);
+                stop(ctx, true);
                 end.play();
             }
         } else {
@@ -265,7 +266,6 @@ function drawEnemyCar2({
         }
     }
 }
-
 // Function to handle score updates
 function ochki({
                    score,
@@ -378,17 +378,18 @@ socket.on('end-game', () => {
                 localContext.fillText("Win", 165, 250);
                 // remoteContext.fillStyle = "Red";
                 // remoteContext.fillText("Lose", 155, 250);
-            } else if(localScore < remoteScore) {
+            } 
+            if(localScore <= remoteScore) {
                 localContext.fillStyle = "Red";
                 localContext.fillText("Lose", 155, 250);
                 // remoteContext.fillStyle = "Green";
                 // remoteContext.fillText("Win", 165, 250);
             }
+            
 
             stop(localContext);
         });
 });
-
 // Initial rendering call
 
 // const startGameBTN = document.querySelector('#start-game');
