@@ -30,7 +30,6 @@ const Loginschema = new mongoose.Schema({
         default: 0
     }
 });
-
 // collection part
 const collection = new mongoose.model("users", Loginschema);
 module.exports = collection;

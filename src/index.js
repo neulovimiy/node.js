@@ -2,6 +2,7 @@ const express = require("express");  // Importing Express framework
 const collection = require("./mongo");  // Importing MongoDB connection
 const bcrypt = require('bcrypt');  // Importing bcrypt for password hashing
 const session = require('express-session');  // Importing session middleware for Express
+const MongoStore = require('connect-mongo');
 const app = express();  // Creating an Express application
 const http = require("http");  // Importing HTTP module
 const server = http.Server(app);  // Creating an HTTP server with the Express app
@@ -87,9 +88,10 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(session({
     secret: 'some-secret-value',
-    resave: true,
+    resave: false,
     saveUninitialized: true,
-    expires : new Date(Date.now() + 3600000),
+    store: MongoStore.create({ mongoUrl:process.env.DB_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/Racer'}),
+    cookie: { maxAge: 3600000 }
 }));
 app.set("view engine", "ejs");
 
@@ -157,11 +159,8 @@ app.post("/signup", async (req, res) => {
         password: req.body.password,
         record: 0
     }
-
     logger.debug(data);
-
     const existingUser = await collection.findOne({ name: data.name });
-
     if (existingUser) {
         res.redirect('/occupied');
     } else {
